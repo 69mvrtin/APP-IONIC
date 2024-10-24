@@ -1,0 +1,75 @@
+<ion-header class="custom-header">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="toggleMenu()">
+        <ion-icon name="menu-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-text color="light" class="welcome-text">Bienvenido, Admin</ion-text>
+    </ion-title>
+<ion-buttons slot="end">
+  <ion-button fill="clear" [routerLink]="['/login']">
+    <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+  </ion-button>
+</ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="main-content" class="content-background">
+  <div class="form-container">
+
+    <!-- Card de Novedades en la página principal -->
+    <ion-card class="novedades-card">
+      <ion-card-header>
+        <ion-card-title>Novedades</ion-card-title>
+        <ion-card-subtitle>Actualización Octubre 2024</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>Hemos añadido nuevas funciones para mejorar tu experiencia:</p>
+        <ul>
+          <li>Mejoras en el rendimiento.</li>
+          <li>Nuevo diseño en la página de perfil.</li>
+          <li>Soporte para más idiomas.</li>
+        </ul>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-footer *ngIf="!showMenu" class="footer-menu" position="fixed">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row class="ion-justify-content-around">
+        <!-- Botones del footer -->
+        <ion-col size="auto">
+          <ion-button fill="clear" [routerLink]="['/inicio']">
+            <ion-icon name="home-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-button fill="clear" [routerLink]="['/buscar']">
+            <ion-icon name="search-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-button fill="clear" >
+            <ion-icon name="settings-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-button fill="clear" [routerLink]="['/notificaciones']">
+            <ion-icon name="notifications-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="auto">
+          <ion-button fill="clear" [routerLink]="['/home']">
+            <ion-icon name="person-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding content-background">
+  <!-- Mensaje de bienvenida -->
+  <div class="welcome-message">
+    <h2>¡Bienvenido a la aplicación!</h2>
+    <p>Por favor, ingresa tus credenciales para continuar.</p>
+  </div>
+
+  <!-- Grid para centrar el formulario -->
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: calc(100vh - 140px);">
+      <ion-col size="12" size-md="6" size-lg="4">
+        <!-- Formulario de login -->
+        <div class="form-container">
+          <ion-item>
+            <ion-label position="floating" color="dark">Nombre de Usuario</ion-label>
+            <ion-input type="text" [(ngModel)]="username"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" color="dark">Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
+          </ion-item>
+
+          <div class="button-container" style="margin-top: 20px;">
+            <ion-button expand="block" shape="round" color="primary" (click)="login()">Ingresar</ion-button>
+          </div>
+
+          <!-- Fila para los botones de restablecer contraseña y registrarme -->
+          <ion-row class="ion-margin-top">
+            <ion-col>
+              <ion-button expand="full" fill="clear" color="primary" routerLink="/reset-password">
+                Olvidé mi contraseña
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button expand="full" fill="clear" color="primary" routerLink="/signup">
+                Registrarme
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-title class="text-center">Derechos reservados</ion-title>
+  </ion-toolbar>
+</ion-footer>
