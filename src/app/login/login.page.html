@@ -31,19 +31,24 @@
           </div>
 
           <!-- Fila para los botones de restablecer contraseña y registrarme -->
-          <ion-row class="ion-margin-top">
-            <ion-col>
-              <ion-button expand="full" fill="clear" color="primary" routerLink="/reset-password">
-                Olvidé mi contraseña
-              </ion-button>
-            </ion-col>
-            <ion-col>
-              <ion-button expand="full" fill="clear" color="primary" routerLink="/signup">
-                Registrarme
-              </ion-button>
-            </ion-col>
-          </ion-row>
+<ion-row class="ion-margin-top">
+  <ion-col>
+    <ion-button expand="full" fill="clear" color="primary" routerLink="/reset-password">
+      Olvidé mi contraseña
+    </ion-button>
+  </ion-col>
+  <ion-col>
+    <ion-button expand="full" fill="clear" color="primary" routerLink="/signup">
+      Registrarme
+    </ion-button>
+  </ion-col>
+</ion-row>
+
         </div>
+
+        <!-- Mensaje de error o éxito -->
+<div *ngIf="message" class="ion-margin-top" [ngClass]="{'error-message': !isSuccess, 'success-message': isSuccess}">
+</div>
       </ion-col>
     </ion-row>
   </ion-grid>

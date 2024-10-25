@@ -1,7 +1,7 @@
 <ion-header class="custom-header">
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-button fill="clear" [routerLink]="['/contac']" >
+      <ion-button fill="clear" (click)="presentAlert()">
         <ion-icon name="logo-whatsapp" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -33,13 +33,26 @@
         </ul>
       </ion-card-content>
     </ion-card>
+
     <!-- Botón de Cursos -->
     <div class="button-container">
       <ion-button expand="full" shape="round" color="primary" [routerLink]="['/courses']">
-        <ion-icon name="book-outline"  slot="start"></ion-icon>
+        <ion-icon name="book-outline" slot="start"></ion-icon>
         Cursos
       </ion-button>
     </div>
+
+    <!-- Sección de Clima -->
+    <ion-card class="weather-card" *ngIf="weatherData">
+      <ion-card-header>
+        <ion-card-title>Clima Actual</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Temperatura:</strong> {{ weatherData.main.temp }} °C</p>
+        <p><strong>Descripción:</strong> {{ weatherData.weather[0].description }}</p>
+      </ion-card-content>
+    </ion-card>
+
   </div>
 </ion-content>
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth.service';
+import { AlertController } from '@ionic/angular';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -8,21 +8,37 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./reset-password.page.scss'],
 })
 export class ResetPasswordPage {
-
   username: string = '';
+  message: string = '';
+  isSuccess: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private alertController: AlertController
+  ) {}
 
-  resetPassword() {
-    if (this.authService.resetPassword(this.username)) {
-      // Redirigir a la página de login en caso de éxito
-      this.router.navigate(['/login']);
+  async resetPassword() {
+    const users = await this.userService.getUsers();
+    
+    // Verificar si el usuario existe
+    const user = users.find((u: { username: string; }) => u.username === this.username);
+    
+    if (user) {
+      // Aquí puedes agregar la lógica para enviar el enlace de restablecimiento
+      // Por ahora, solo mostraremos un mensaje de éxito
+      this.message = 'Se ha enviado un enlace para restablecer la contraseña a tu correo electrónico.';
+      this.isSuccess = true;
+
+      // Opcional: Mostrar un alert
+      const alert = await this.alertController.create({
+        header: 'Éxito',
+        message: this.message,
+        buttons: ['OK']
+      });
+      await alert.present();
     } else {
-      console.log('Error al restablecer la contraseña');
+      this.message = 'Usuario no encontrado.';
+      this.isSuccess = false;
     }
   }
 }
-
-
-
-
