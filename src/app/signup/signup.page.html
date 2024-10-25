@@ -1,19 +1,24 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Registro</ion-title>
+  <ion-toolbar color="primary" style="background: linear-gradient(135deg, #a66aff, #4a3eeb); color: #575353;">
+    <ion-title style="font-weight: bold; font-size: 20px;">Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="floating">Nombre de Usuario</ion-label>
-    <ion-input [(ngModel)]="username" type="text"></ion-input>
-  </ion-item>
+<ion-content class="ion-padding" style="--background: #092147; display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <div style="width: 100%; max-width: 400px;">
+    <ion-item>
+      <ion-label position="floating" style="color: #a8a8b3;">Nombre de Usuario</ion-label>
+      <ion-input [(ngModel)]="username" type="text" style="color: #ffffff;"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input [(ngModel)]="password" type="password"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label position="floating" style="color: #a8a8b3;">Contraseña</ion-label>
+      <ion-input [(ngModel)]="password" type="password" style="color: #ffffff;"></ion-input>
+    </ion-item>
 
-  <ion-button expand="full" (click)="register()">Registrarme</ion-button>
+    <ion-button expand="full" (click)="register()" style="background-color: #a66aff; color: #ffffff; font-size: 1.2rem;">
+      Registrarme
+      <ion-icon slot="end" name="person-add-outline" style="font-size: 1.5rem; color: #000000;"></ion-icon>
+    </ion-button>
+  </div>
 </ion-content>

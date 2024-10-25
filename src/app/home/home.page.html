@@ -18,22 +18,6 @@
 
 <ion-content id="main-content" class="content-background">
   <div class="form-container">
-    <!-- Card de Novedades en la página principal -->
-    <ion-card class="novedades-card">
-      <ion-card-header>
-        <ion-card-title>Novedades</ion-card-title>
-        <ion-card-subtitle>Actualización Octubre 2024</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Hemos añadido nuevas funciones para mejorar tu experiencia:</p>
-        <ul>
-          <li>Mejoras en el rendimiento.</li>
-          <li>Nuevo diseño en la página de perfil.</li>
-          <li>Soporte para más idiomas.</li>
-        </ul>
-      </ion-card-content>
-    </ion-card>
-
     <!-- Botón de Cursos -->
     <div class="button-container">
       <ion-button expand="full" shape="round" color="primary" [routerLink]="['/courses']">
@@ -52,7 +36,6 @@
         <p><strong>Descripción:</strong> {{ weatherData.weather[0].description }}</p>
       </ion-card-content>
     </ion-card>
-
   </div>
 </ion-content>
 
