@@ -19,7 +19,6 @@ export class LoginPage {
     private userService: UserService,
     private router: Router,
     private alertController: AlertController,
-    private storage: Storage
         
   ) { }
 
@@ -38,5 +37,3 @@ export class LoginPage {
   }
 }
 
-
-//guardar informacion storage

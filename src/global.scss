@@ -36,7 +36,7 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 :root {
   --ion-background-color: #ffffff; 
-  --ion-color-primary: #7d38ff;  
+  --ion-color-primary: #5771e9;  
   --ion-color-primary-rgb: 0, 61, 165;
   --ion-color-secondary: #F5A800;  
   --ion-color-secondary-rgb: 245, 168, 0;
@@ -44,9 +44,7 @@
   --ion-color-light: #FFFFFF;  
 }
 
-.content-background {
-  --background: #ffffff; 
-}
+
 
 ion-item {
   --background: #ffffff; 
@@ -57,7 +55,7 @@ ion-item {
 }
 
 ion-label {
-  color: #003DA5; 
+  color: #6d6d6d; 
 }
 
 ion-input {
