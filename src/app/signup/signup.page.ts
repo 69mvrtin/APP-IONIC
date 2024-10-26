@@ -9,8 +9,10 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage {
+  email: string = '';
   username: string = '';
   password: string = '';
+  confirmPassword: string = '';
 
   constructor(
     private userService: UserService,
@@ -19,20 +21,34 @@ export class SignupPage {
   ) {}
 
   async register() {
-    const users = await this.userService.getUsers() || [];
+    // Validación de existencia del usuario
+    const users = (await this.userService.getUsers()) || [];
     const userExists = users.some((user: { username: string }) => user.username === this.username);
 
     if (userExists) {
-      const alert = await this.alertController.create({
-        header: 'Error',
-        message: 'El nombre de usuario ya existe.',
-        buttons: ['OK']
-      });
-      await alert.present();
+      await this.showAlert('Error', 'El nombre de usuario ya existe.');
       return;
     }
 
+    // Validación de contraseñas coincidentes
+    if (this.password !== this.confirmPassword) {
+      await this.showAlert('Error', 'Las contraseñas no coinciden.');
+      return;
+    }
+
+    // Registro de usuario
     await this.userService.addUser(this.username, this.password);
+    await this.showAlert('Registro Exitoso', '¡Usuario registrado correctamente!');
     this.router.navigate(['/login']);
+  }
+
+  // Método para mostrar alerta
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 }

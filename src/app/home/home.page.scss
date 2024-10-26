@@ -1,112 +1,45 @@
-ion-content {
-  --background: #092147; /* Fondo oscuro */
+/* Estilos específicos de home.page.scss */
+
+.content-background {
+  background: linear-gradient(to bottom right, #4e4f50, #163c68);
 }
 
-/* Encabezado */
-ion-header {
-  ion-toolbar {
-    background: linear-gradient(135deg, #a66aff, #4a3eeb); /* Gradiente de fondo */
-    color: #575353;
-  }
-
-  ion-title {
-    font-weight: bold;
-    font-size: 20px;
-  }
-
-  ion-button {
-    ion-icon {
-      font-size: 1.5rem;
-      color: #000000;
-    }
-  }
+.weather-text {
+  color: #000000; /* Color del texto del clima */
+  font-size: 16px; /* Tamaño de fuente */
+  text-align: center; /* Centrar el texto */
+  margin: 20px 0; /* Espaciado vertical */
 }
 
-/* Tarjeta del usuario */
-ion-card {
-  background-color: #2b2b3c;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  color: #fff;
-
-  ion-avatar {
-    --border-radius: 50%;
-    background-color: #ffffff20; /* Fondo translúcido */
-    color: #fff;
-  }
-
-  ion-label {
-    h2 {
-      font-size: 1.6rem;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    p {
-      font-size: 1.2rem;
-      color: #a8a8b3;
-    }
-  }
-
-  ion-item {
-    --background: transparent;
-  }
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra el contenido horizontalmente */
+  margin-top: 20px; /* Espacio superior para el contenedor */
 }
 
-/* Estilo para las tarjetas de clases y asignaturas */
-ion-card {
-  margin: 10px;
+.explore-courses {
+  width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
+  margin-bottom: 20px; /* Espaciado inferior */
 }
 
-ion-card-title {
-  font-weight: bold;
-  color: #fff;
-}
-
-ion-card-header {
-  background-color: #2b2b3c;
-  border-radius: 10px;
-  color: #fff;
-}
-
-ion-card-content {
-  font-size: 1.4rem;
-  color: #fff;
-
-  h3 {
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin-bottom: 5px;
-  }
-
-  p {
-    margin: 0;
-    color: #a8a8b3;
-  }
-}
-
-/* Estilo de los botones */
 ion-button {
-  color: #a66aff;
-  font-size: 1.2rem;
+  font-weight: bold;
+  font-size: 16px;
+  transition: transform 0.3s;
 }
 
-/* Footer y navegación */
-ion-tab-bar {
-  --background: #2b2b3c;
+ion-button:hover {
+  transform: scale(1.05);
 }
 
-ion-tab-button {
-  --color-selected: #a66aff;
-  --color: #fff;
-  ion-icon {
-    font-size: 1.5rem;
-  }
-}
-
-.current-time-text {
-  text-align: center;
-  font-size: 1.2em;
-  margin: 10px 0;
-  color: #ffffff; // Cambia el color según tu preferencia
+.notifications-panel {
+  background-color: #247afc; /* Fondo blanco */
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease; /* Suavizar la transición */
+  position: relative;
+  z-index: 10;
 }

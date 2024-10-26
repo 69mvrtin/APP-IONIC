@@ -35,4 +35,15 @@ export class UserService {
   async removeUsername() {
     await Storage.remove({ key: 'username' });
   }
+
+  // Método para obtener los datos del usuario
+  async getUserData() {
+    const { value } = await Storage.get({ key: 'userData' });
+    return JSON.parse(value || '{}'); // Asegura que devuelva un objeto vacío si no hay datos
+  }
+
+  // Método para actualizar los datos del usuario
+  async updateUserData(userData: any) {
+    await Storage.set({ key: 'userData', value: JSON.stringify(userData) });
+  }
 }

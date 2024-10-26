@@ -17,59 +17,47 @@
 </ion-header>
 
 <ion-content id="main-content" class="content-background">
+  <!-- Sección de Clima como texto lineal -->
+  <div class="weather-text">
+    <p *ngIf="weatherData">
+      <strong>Clima Actual:</strong> {{ weatherData.main.temp }} °C, {{ weatherData.weather[0].description | titlecase }}
+    </p>
+  </div>
+
   <div class="form-container">
-    <!-- Botón de Cursos -->
-    <div class="button-container">
-      <ion-button expand="full" shape="round" color="primary" [routerLink]="['/courses']">
+    <!-- Botón de Cursos reposicionado -->
+    <div class="button-container explore-courses">
+      <ion-button expand="full" shape="round" color="tertiary" [routerLink]="['/courses']">
         <ion-icon name="book-outline" slot="start"></ion-icon>
-        Cursos
+        Explora Cursos
       </ion-button>
     </div>
-
-    <!-- Sección de Clima -->
-    <ion-card class="weather-card" *ngIf="weatherData">
-      <ion-card-header>
-        <ion-card-title>Clima Actual</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p><strong>Temperatura:</strong> {{ weatherData.main.temp }} °C</p>
-        <p><strong>Descripción:</strong> {{ weatherData.weather[0].description }}</p>
-      </ion-card-content>
-    </ion-card>
   </div>
 </ion-content>
-
-<ion-footer class="footer-menu" position="fixed">
+<ion-footer class="footer-menu">
   <ion-toolbar>
     <ion-grid>
       <ion-row class="ion-justify-content-around">
-        <!-- Botones del footer con color primario -->
-        <ion-col size="auto">
-          <ion-button fill="clear" color="primary" [routerLink]="['/home']">
-            <ion-icon name="home-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col size="auto">
-          <ion-button fill="clear" color="primary" [routerLink]="['/calendar']">
-            <ion-icon name="calendar-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col size="auto">
-          <ion-button fill="clear" color="primary" [routerLink]="['/scan']">
-            <ion-icon name="scan" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col size="auto">
-          <ion-button fill="clear" color="primary" [routerLink]="['/notifications']">
-            <ion-icon name="notifications-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col size="auto">
-          <ion-button fill="clear" color="primary" [routerLink]="['/profile']">
-            <ion-icon name="person-outline" slot="icon-only"></ion-icon>
+        <!-- Botones del footer con un estilo moderno -->
+        <ion-col size="auto" *ngFor="let page of footerPages">
+          <ion-button fill="clear" color="primary" (click)="page.link === '/notifications' ? toggleNotifications() : navigateTo(page.link)">
+            <ion-icon [name]="page.icon" slot="icon-only"></ion-icon>
           </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
+
+  <!-- Contenedor de notificaciones -->
+  <div *ngIf="showNotifications" class="notifications-panel">
+    <ion-card *ngFor="let notification of notifications">
+      <ion-card-header>
+        <ion-card-title>{{ notification.title }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{ notification.message }}
+      </ion-card-content>
+    </ion-card>
+    <ion-button expand="full" (click)="clearNotifications()">Limpiar Notificaciones</ion-button>
+  </div>
 </ion-footer>

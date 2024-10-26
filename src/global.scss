@@ -44,33 +44,28 @@
   --ion-color-light: #FFFFFF;  
 }
 
-
+/* Solo estilos básicos para no bloquear los estilos de los componentes */
 
 ion-item {
-  --background: #ffffff; 
-  --border-color: #020202; 
+  --background: var(--ion-background-color);
+  --border-color: #020202;
   --border-width: 1px;
   --border-radius: 8px;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 ion-label {
-  color: #6d6d6d; 
+  color: #6d6d6d;
 }
 
 ion-input {
   --background: #FFFFFF;
   --color: #000000;
-  --placeholder-color: #A0A0A0; 
-  --highlight-color: #000000; 
+  --placeholder-color: #A0A0A0;
   color: #000000 !important; 
-  width: 100%;
-  max-width: 200px;
-  margin: 0 auto;
-  font-size: 14px;
 }
 
-
+/* Logotipo */
 .logo-container {
   text-align: center;
   margin-bottom: 20px;
@@ -87,6 +82,7 @@ ion-input {
   padding: 20px;
 }
 
+/* Estilos de Botón */
 .button-container {
   text-align: center;
 }
@@ -98,9 +94,3 @@ ion-button {
 ion-button[fill="clear"] {
   --color: #000;
 }
-
-  
-  
-  
-  
-  

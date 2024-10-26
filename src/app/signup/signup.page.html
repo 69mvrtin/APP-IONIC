@@ -1,24 +1,45 @@
 <ion-header>
-  <ion-toolbar color="primary" style="background: linear-gradient(135deg, #a66aff, #4a3eeb); color: #575353;">
-    <ion-title style="font-weight: bold; font-size: 20px;">Registro</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" style="--background: #092147; display: flex; justify-content: center; align-items: center; height: 100vh;">
-  <div style="width: 100%; max-width: 400px;">
-    <ion-item>
-      <ion-label position="floating" style="color: #a8a8b3;">Nombre de Usuario</ion-label>
-      <ion-input [(ngModel)]="username" type="text" style="color: #ffffff;"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating" style="color: #a8a8b3;">Contraseña</ion-label>
-      <ion-input [(ngModel)]="password" type="password" style="color: #ffffff;"></ion-input>
-    </ion-item>
-
-    <ion-button expand="full" (click)="register()" style="background-color: #a66aff; color: #ffffff; font-size: 1.2rem;">
-      Registrarme
-      <ion-icon slot="end" name="person-add-outline" style="font-size: 1.5rem; color: #000000;"></ion-icon>
-    </ion-button>
+<ion-content class="ion-padding content-background">
+  <div class="register-message">
+    <h2>Crear una cuenta</h2>
+    <p>Por favor, llena los siguientes campos para crear una cuenta.</p>
   </div>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: calc(100vh - 200px);">
+      <ion-col size="12" size-md="6" size-lg="4">
+        <div class="form-container">
+          <ion-item>
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+            <ion-label position="floating" color="dark">Correo Electrónico</ion-label>
+            <ion-input type="email" [(ngModel)]="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-label position="floating" color="dark">Nombre de Usuario</ion-label>
+            <ion-input type="text" [(ngModel)]="username"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+            <ion-label position="floating" color="dark">Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+            <ion-label position="floating" color="dark">Confirmar Contraseña</ion-label>
+            <ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
+          </ion-item>
+
+          <div class="button-container" style="margin-top: 20px;">
+            <ion-button expand="block" shape="round" color="primary" (click)="register()">Registrarse</ion-button>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

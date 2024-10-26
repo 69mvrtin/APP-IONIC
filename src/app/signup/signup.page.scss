@@ -1,0 +1,59 @@
+.content-background {
+  --background: #092147; /* Fondo oscuro */
+}
+
+.register-message {
+  text-align: center;
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 2rem; /* Tamaño de fuente del título */
+    color: #ffffff; /* Color del texto del título */
+    margin: 0; /* Elimina margen por defecto */
+  }
+
+  p {
+    font-size: 1.2rem; /* Tamaño de fuente del párrafo */
+    color: #dddddd; /* Color del texto del párrafo */
+  }
+}
+
+.form-container {
+  background-color: rgba(255, 255, 255, 0.1); /* Fondo ligeramente translúcido */
+  border-radius: 12px; /* Esquinas redondeadas */
+  padding: 20px; /* Espaciado interno */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Sombra para el contenedor */
+}
+
+ion-item {
+  position: relative;
+
+  ion-icon {
+    color: #a8a8b3; /* Color del icono */
+    font-size: 1.5rem; /* Tamaño del icono */
+  }
+
+  ion-label {
+    color: #a8a8b3; /* Color del texto del label */
+  }
+
+  ion-input {
+    color: #ffffff; /* Color del texto de entrada */
+    background: transparent; /* Fondo transparente para el input */
+    padding-left: 40px; /* Espacio para el icono */
+    
+    &::placeholder {
+      color: #dddddd; /* Color del placeholder */
+    }
+  }
+}
+
+.button-container {
+  margin-top: 20px;
+
+  ion-button {
+    font-size: 1.2rem; /* Tamaño de fuente del botón */
+    --background: #a66aff; /* Color de fondo del botón */
+    --color: #ffffff; /* Color del texto del botón */
+  }
+}

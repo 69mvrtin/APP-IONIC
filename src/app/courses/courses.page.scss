@@ -1,0 +1,32 @@
+/* Estilos específicos de courses.page.scss */
+
+.content-background {
+    background: linear-gradient(to bottom right, #4e4f50, #163c68);
+    padding: 20px; /* Espaciado interno */
+  }
+  
+  .courses-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido */
+  }
+  
+  .course-card {
+    width: 100%; /* Asegura que la tarjeta ocupe todo el ancho */
+    max-width: 400px; /* Limita el ancho máximo de la tarjeta */
+    margin-bottom: 20px; /* Espaciado inferior entre tarjetas */
+    background: #ffffff; /* Fondo blanco para la tarjeta */
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra de la tarjeta */
+  }
+  
+  ion-button {
+    font-weight: bold;
+    font-size: 16px;
+    transition: transform 0.3s;
+  }
+  
+  ion-button:hover {
+    transform: scale(1.05);
+  }
+  
