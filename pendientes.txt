@@ -1,0 +1,9 @@
+-- restante app --
+
+1: profile
+2: page 404/not found
+3: scan QR(importante)
+4: ajustar todo en cada pagina donde haya algo que no calze
+
+
+--   @69mvrtin  --
