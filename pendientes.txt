@@ -2,7 +2,8 @@
 
 1: profile
 2: page 404/not found
-3: scan QR(importante)
+3: scan QR(importante) link video guia:
+https://www.youtube.com/watch?v=dhTLpXuYGOI&t=3230s(ignorar parte donde el usa la pagina home/ usen pagina scan en src/app/scan)
 4: ajustar todo en cada pagina donde haya algo que no calze
 
 
