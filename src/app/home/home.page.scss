@@ -43,3 +43,13 @@ ion-button:hover {
   position: relative;
   z-index: 10;
 }
+
+  .logo-container {
+    position: absolute;
+    bottom: 20px; /* Ajusta este valor para la distancia desde el borde inferior */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+  
