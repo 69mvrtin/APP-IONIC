@@ -9,7 +9,9 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule) },
   { path: 'signup', loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)},
   { path: 'courses',  loadChildren: () => import('./courses/courses.module').then( m => m.CoursesPageModule)},
-  { path: '**', component: PageNotFoundComponent },
+  { path: 'profile',  loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+
 ];
 
 @NgModule({

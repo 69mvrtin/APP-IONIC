@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngIf="userData.username; else noData" class="profile-container">
+    <div class="profile-box">
+      <!-- Foto de perfil -->
+      <div class="profile-avatar" [style.background-image]="'url(' + userData.profilePic + ')'" [style.background-size]="'cover'">
+        <!-- Foto de perfil -->
+      </div>
+
+      <!-- Título y subtítulo del perfil -->
+      <div class="profile-title">{{ userData.username }}</div>
+      <div class="profile-subtitle">{{ userData.email || 'Email not provided' }}</div>
+
+      <!-- Información adicional del usuario -->
+      <div class="profile-info">
+        <div class="profile-item">
+          <span class="profile-item-label">Username:</span>
+          <span>{{ userData.username }}</span>
+        </div>
+        <div class="profile-item">
+          <span class="profile-item-label">Email:</span>
+          <span>{{ userData.email || 'Email not available' }}</span>
+        </div>
+        <div class="profile-item">
+          <span class="profile-item-label">Account Created:</span>
+          <span>{{ userData.accountCreated | date:'shortDate' || 'Not available' }}</span>
+        </div>
+        <div class="profile-item">
+          <span class="profile-item-label">Location:</span>
+          <span>{{ userData.location || 'Not provided' }}</span>
+        </div>
+      </div>
+
+      <!-- Descripción del perfil -->
+      <div class="profile-description">
+        <strong>About me:</strong>
+        <p>{{ userData.bio || 'No description provided.' }}</p>
+      </div>
+
+      <!-- Botón para editar el perfil -->
+      <button class="edit-button" (click)="editProfile()">Edit Profile</button>
+
+      <!-- Pie de página -->
+      <div class="profile-footer">
+        <p>¡Gracias por visitar tu perfil!</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <p>No user data found. Please log in.</p>
+  </ng-template>
+</ion-content>
