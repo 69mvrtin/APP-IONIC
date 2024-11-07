@@ -38,6 +38,14 @@ export class SignupPage {
 
     // Registro de usuario
     await this.userService.addUser(this.username, this.password);
+
+    // Guardar los datos del usuario (por ejemplo, el correo electrónico)
+    const userData = {
+      username: this.username,
+      email: this.email,  // Guarda el correo
+    };
+    await this.userService.updateUserData(userData);  // Guarda los datos en el localStorage
+
     await this.showAlert('Registro Exitoso', '¡Usuario registrado correctamente!');
     this.router.navigate(['/login']);
   }

@@ -15,14 +15,14 @@ export class HomePage implements OnInit {
   username: string = '';
   weatherData: any; // Considera definir un tipo específico para tus datos del clima
   notifications: Array<{ title: string; message: string }> = []; // Almacena las notificaciones
-
   footerPages = [
     { link: '/home', icon: 'home-outline' },
     { link: '/mesages', icon: 'mail-open-outline' },
     { link: '/scan', icon: 'qr-code-outline' },
     { link: '/notifications', icon: 'notifications-outline' },
-    { link: '/profile', icon: 'person-outline' },
+    { link: '/profile', icon: 'person-outline' }, // Profile button setup
   ];
+  
 
   constructor(
     private userService: UserService,
