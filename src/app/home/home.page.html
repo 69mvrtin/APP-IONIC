@@ -27,7 +27,7 @@
   <div class="form-container">
     <!-- Botón de Cursos reposicionado -->
     <div class="button-container explore-courses">
-      <ion-button expand="full" shape="round" color="tertiary" [routerLink]="['/courses']">
+      <ion-button expand="full" shape="round" color="medium" [routerLink]="['/courses']">
         <ion-icon name="book-outline" slot="start"></ion-icon>
         Explora Cursos
       </ion-button>
@@ -43,7 +43,7 @@
       <ion-row class="ion-justify-content-around">
         <!-- Botones del footer con un estilo moderno -->
         <ion-col size="auto" *ngFor="let page of footerPages">
-          <ion-button fill="clear" color="primary" (click)="page.link === '/notifications' ? toggleNotifications() : navigateTo(page.link)">
+          <ion-button  color="primary" (click)="page.link === '/notifications' ? toggleNotifications() : navigateTo(page.link)">
             <ion-icon [name]="page.icon" slot="icon-only"></ion-icon>
           </ion-button>
         </ion-col>

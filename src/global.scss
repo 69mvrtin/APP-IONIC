@@ -36,32 +36,32 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 :root {
   --ion-background-color: #ffffff; 
-  --ion-color-primary: #5771e9;  
+  --ion-color-primary: #030c50;  
   --ion-color-primary-rgb: 0, 61, 165;
-  --ion-color-secondary: #F5A800;  
+  --ion-color-secondary: #000000;  
   --ion-color-secondary-rgb: 245, 168, 0;
-  --ion-color-dark: #333333;  
-  --ion-color-light: #FFFFFF;  
+  --ion-color-dark: #000000;  
+  --ion-color-light: #ffffff;  
 }
 
 /* Solo estilos básicos para no bloquear los estilos de los componentes */
 
 ion-item {
   --background: var(--ion-background-color);
-  --border-color: #020202;
+  --border-color: #000000;
   --border-width: 1px;
   --border-radius: 8px;
   margin-bottom: 10px;
 }
 
 ion-label {
-  color: #6d6d6d;
+  color: #dbdbdb;
 }
 
 ion-input {
-  --background: #FFFFFF;
+  --background: #000000;
   --color: #000000;
-  --placeholder-color: #A0A0A0;
+  --placeholder-color: #000000;
   color: #000000 !important; 
 }
 
@@ -92,5 +92,5 @@ ion-button {
 }
 
 ion-button[fill="clear"] {
-  --color: #000;
+  --color: #000000;
 }
