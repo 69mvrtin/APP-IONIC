@@ -23,27 +23,27 @@
           <span>{{ userData.username }}</span>
         </div>
         <div class="profile-item">
-          <span class="profile-item-label">Email:</span>
+          <span class="profile-item-label">carrera:</span>
           <span>{{ userData.email || 'Email not available' }}</span>
         </div>
         <div class="profile-item">
-          <span class="profile-item-label">Account Created:</span>
+          <span class="profile-item-label">modalidad:</span>
           <span>{{ userData.accountCreated | date:'shortDate' || 'Not available' }}</span>
         </div>
         <div class="profile-item">
-          <span class="profile-item-label">Location:</span>
+          <span class="profile-item-label">sede:</span>
           <span>{{ userData.location || 'Not provided' }}</span>
         </div>
       </div>
 
       <!-- Descripción del perfil -->
       <div class="profile-description">
-        <strong>About me:</strong>
+        <strong>sobre mi:</strong>
         <p>{{ userData.bio || 'No description provided.' }}</p>
       </div>
 
       <!-- Botón para editar el perfil -->
-      <button class="edit-button" (click)="editProfile()">Edit Profile</button>
+      <button class="edit-button" (click)="editProfile()" routerLink="/edit-profile">editar Perfil</button>
 
       <!-- Pie de página -->
       <div class="profile-footer">

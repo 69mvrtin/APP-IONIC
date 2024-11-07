@@ -10,7 +10,11 @@ const routes: Routes = [
   { path: 'signup', loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)},
   { path: 'courses',  loadChildren: () => import('./courses/courses.module').then( m => m.CoursesPageModule)},
   { path: 'profile',  loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },  {
+    path: 'edit-profile',
+    loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   },
+
 
 ];
 
