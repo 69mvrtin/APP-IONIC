@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'edit-profile',
     loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   },
+  {
+    path: 'horario',
+    loadChildren: () => import('./horario/horario.module').then( m => m.HorarioPageModule)
+  },
 
 
 ];

@@ -8,10 +8,12 @@ import { AlertController } from '@ionic/angular';
 })
 export class CoursesPage implements OnInit {
   courses = [
-    { id: 1, title: 'Curso de Programación', description: 'Aprende los fundamentos de la programación.' },
-    { id: 2, title: 'Curso de Diseño Web', description: 'Crea sitios web atractivos y funcionales.' },
-    { id: 3, title: 'Curso de Marketing Digital', description: 'Mejora tus habilidades en marketing online.' },
-    { id: 4, title: 'Curso de Fotografía', description: 'Aprende a capturar momentos únicos.' },
+    { id: 1, title: 'Ingles Avanzado', description: 'Aprende Ingles avananzado.' },
+    { id: 2, title: 'Programacion De APP Moviles', description: 'Crea app moviles atractivas y funcionales.' },
+    { id: 3, title: 'Arquitectura', description: 'Mejora tus habilidades en marketing online.' },
+    { id: 4, title: 'Calidad de Software', description: 'Aprende a capturar momentos únicos.' },
+    { id: 5, title: 'Estadistica Descriptiva', description: 'Aprende a capturar momentos únicos.' },
+    { id: 6, title: 'Etica para el trabajo', description: 'Aprende a capturar momentos únicos.' },
   ];
 
   constructor(private alertController: AlertController) { }
