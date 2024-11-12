@@ -51,5 +51,29 @@ ion-button:hover {
     transform: translateX(-50%);
     text-align: center;
 }
-
   
+.custom-header {
+  border-bottom-left-radius: 25px; /* Ajusta el valor según tus necesidades */
+  border-bottom-right-radius: 25px; /* Ajusta el valor según tus necesidades */
+  overflow: hidden; /* Asegura que el contenido no se salga del borde redondeado */
+  background-color: #3c87f7; /* Fondo azul */
+}
+
+ion-toolbar {
+  padding-bottom: 20px; /* Ajusta el valor según tus necesidades */
+}
+
+ion-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.logo-container {
+  text-align: center;
+  margin-top: 10px; /* Ajusta el valor según tus necesidades */
+}
+
+.logo {
+  width: 100px; /* Ajusta el valor según tus necesidades */
+  height: auto;
+}
