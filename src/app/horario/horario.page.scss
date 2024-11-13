@@ -1,12 +1,3 @@
-.page-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #fff; /* Letras en blanco */
-  background-color: #163c68; /* Fondo azul */
-  padding: 10px; /* Espaciado interno */
-  text-align: center; /* Centrar el texto */
-}
-
 .page-title-large {
   font-size: 32px;
   font-weight: bold;
@@ -14,4 +5,33 @@
   background-color: #163c68; /* Fondo azul */
   padding: 10px; /* Espaciado interno */
   text-align: center; /* Centrar el texto */
+}
+
+ion-button {
+  margin: 10px;
+  width: 90%; /* Ajusta el ancho de los botones */
+  max-width: 300px; /* Ancho máximo de los botones */
+}
+
+ion-popover {
+  --width: 300px;
+  --height: auto;
+}
+
+ion-list {
+  padding: 10px;
+}
+
+ion-item {
+  font-size: 16px;
+  padding: 10px 0;
+}
+
+.days-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  height: 100vh; /* Asegúrate de que el contenedor ocupe toda la altura de la pantalla */
+  padding: 10px;
 }
