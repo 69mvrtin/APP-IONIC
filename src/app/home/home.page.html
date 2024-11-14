@@ -1,26 +1,31 @@
 <ion-header class="custom-header">
-  <ion-toolbar color="primary">
+  <ion-toolbar color="medium">
     <ion-buttons slot="start">
-      <ion-button fill="clear" (click)="presentAlert()">
-        <ion-icon name="logo-whatsapp" slot="icon-only"></ion-icon>
-      </ion-button>
-      <ion-avatar slot="start">
-        <img src="assets/img/profile.jpg" alt="Profile Image">
-      </ion-avatar>
+      <div class="avatar-container">
+        <!-- Mostrar las iniciales si están disponibles, de lo contrario una imagen de avatar predeterminada -->
+        <div *ngIf="initials" class="avatar">{{ initials }}</div>
+        <img *ngIf="!initials" src="assets/img/default-avatar.png" alt="Menu Image" class="menu-image">
+      </div>
     </ion-buttons>
+
     <ion-title>
       <ion-text color="light" class="welcome-text">Bienvenido, {{ username }}</ion-text>
     </ion-title>
+
     <ion-buttons slot="end">
       <ion-button fill="clear" [routerLink]="['/login']">
         <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+
+  <!-- Logo principal debajo del toolbar -->
   <div class="logo-container">
     <img src="assets/img/Logo_Duoc.png" alt="Logo Duoc UC" class="logo">
   </div>
 </ion-header>
+
+
 
 <ion-content id="main-content" class="content-background">
   <!-- Sección de Clima como texto lineal -->
@@ -49,7 +54,7 @@
       <ion-row class="ion-justify-content-around">
         <!-- Botones del footer con un estilo moderno -->
         <ion-col size="auto" *ngFor="let page of footerPages">
-          <ion-button  color="primary" (click)="page.link === '/notifications' ? toggleNotifications() : navigateTo(page.link)">
+          <ion-button  color="medium" (click)="page.link === '/notifications' ? toggleNotifications() : navigateTo(page.link)">
             <ion-icon [name]="page.icon" slot="icon-only"></ion-icon>
           </ion-button>
         </ion-col>

@@ -35,20 +35,21 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 :root {
-  --ion-background-color: #6922ec; 
+  --ion-background-color: #03024d; 
   --ion-color-primary: #a828fd;  
   --ion-color-primary-rgb: 0, 61, 165;
   --ion-color-secondary: #000000;  
   --ion-color-secondary-rgb: 245, 168, 0;
   --ion-color-dark: #000000;  
-  --ion-color-light: #ffffff;  
+  --ion-color-light: #ffffff;
+  --ion-color-medium: #2427ca; 
 }
 
 /* Solo estilos básicos para no bloquear los estilos de los componentes */
 
 ion-item {
   --background: var(--ion-background-color);
-  --border-color: #000000;
+  --border-color: #ffffff;
   --border-width: 1px;
   --border-radius: 8px;
   margin-bottom: 10px;
@@ -59,10 +60,10 @@ ion-label {
 }
 
 ion-input {
-  --background: #000000;
-  --color: #000000;
-  --placeholder-color: #000000;
-  color: #000000 !important; 
+  --background: #ffffff;
+  --color: #ffffff;
+  --placeholder-color: #ffffff;
+  color: #ffffff !important; 
 }
 
 /* Logotipo */

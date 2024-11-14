@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { UserService } from 'src/app/user.service';
 import { WeatherService } from '../services/weather.service';
-import { Router } from '@angular/router'; // Importa Router
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,24 +11,24 @@ import { Router } from '@angular/router'; // Importa Router
 })
 export class HomePage implements OnInit {
   showMenu = false;
-  showNotifications = false; // Controla la visibilidad del panel de notificaciones
+  showNotifications = false;
   username: string = '';
-  weatherData: any; // Considera definir un tipo específico para tus datos del clima
-  notifications: Array<{ title: string; message: string }> = []; // Almacena las notificaciones
+  initials: string = ''; // Propiedad para las iniciales del avatar
+  weatherData: any;
+  notifications: Array<{ title: string; message: string }> = [];
   footerPages = [
     { link: '/home', icon: 'home-outline' },
     { link: '/horario', icon: 'mail-open-outline' },
     { link: '/scan', icon: 'qr-code-outline' },
     { link: '/notifications', icon: 'notifications-outline' },
-    { link: '/profile', icon: 'person-outline' }, // Profile button setup
+    { link: '/profile', icon: 'person-outline' },
   ];
-  
 
   constructor(
     private userService: UserService,
     private alertController: AlertController,
     private weatherService: WeatherService,
-    private router: Router // Inyecta Router en el constructor
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -36,11 +36,12 @@ export class HomePage implements OnInit {
       const username = await this.userService.getUsername();
       if (username) {
         this.username = username;
+        this.initials = await this.userService.getUserInitials(); // Obtiene las iniciales del usuario
         this.getUserLocation();
       } else {
         console.warn('No se encontró un nombre de usuario almacenado.');
       }
-      this.loadNotifications(); // Cargar las notificaciones al iniciar
+      this.loadNotifications();
     } catch (error) {
       console.error('Error al obtener el nombre de usuario', error);
     }
@@ -51,11 +52,10 @@ export class HomePage implements OnInit {
   }
 
   toggleNotifications() {
-    this.showNotifications = !this.showNotifications; // Cambia el estado de visibilidad del panel de notificaciones
+    this.showNotifications = !this.showNotifications;
   }
 
   loadNotifications() {
-    // Aquí puedes cargar las notificaciones desde un servicio o definir algunas estáticas
     this.notifications = [
       { title: 'Nueva actualización', message: 'La aplicación se ha actualizado a la versión 1.0.1.' },
       { title: 'Nuevo mensaje', message: 'Tienes un nuevo mensaje de soporte.' },
@@ -63,7 +63,7 @@ export class HomePage implements OnInit {
   }
 
   navigateTo(link: string) {
-    this.router.navigate([link]); // Utiliza el router para navegar a la ruta especificada
+    this.router.navigate([link]);
   }
 
   getUserLocation() {
@@ -115,6 +115,6 @@ export class HomePage implements OnInit {
   }
 
   clearNotifications() {
-    this.notifications = []; // Limpia las notificaciones
+    this.notifications = [];
   }
 }

@@ -3,7 +3,7 @@
     margin-bottom: 20px;
     h2 {
       font-size: 1.8rem; /* Tamaño de fuente del título */
-      color: #000000; /* Color del texto del título */
+      color: #ffffff; /* Color del texto del título */
       margin: 0; /* Elimina margen por defecto */
     }
     p {
@@ -14,14 +14,14 @@
 }
 
 ion-content {
-  --background: #8eafd3; /* Fondo oscuro */
+  --background: #03024d; /* Fondo oscuro */
 }
 
 .custom-alert {
   --background: #ece6e6;
   --color: #ffffff;
   --border-radius: 12px;
-  --box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+  --box-shadow: 0 2px 8px rgb(255, 255, 255);
 }
 
 .custom-alert .alert-title {
@@ -35,10 +35,10 @@ ion-content {
 }
 
 .form-container {
-  background-color: #426289; /* Color de fondo */
+  background-color: #02012e; /* Color de fondo */
   padding: 20px; /* Espacio interno */
   border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(35, 126, 199, 0.2); /* Sombra */
+  box-shadow: 0 4px 8px rgba(1, 26, 255, 0.918); /* Sombra */
   display: flex;
   flex-direction: column;
   align-items: center;

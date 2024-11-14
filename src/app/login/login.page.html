@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="medium">
     <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -22,27 +22,27 @@
         <!-- Formulario de login -->
         <div class="form-container">
           <ion-item>
-            <ion-label position="floating" color="dark">Nombre de Usuario</ion-label>
+            <ion-label position="floating" color="light">Nombre de Usuario</ion-label>
             <ion-input type="text" [(ngModel)]="username"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="floating" color="dark">Contraseña</ion-label>
+            <ion-label position="floating" color="light">Contraseña</ion-label>
             <ion-input type="password" [(ngModel)]="password"></ion-input>
           </ion-item>
 
           <div class="button-container" style="margin-top: 20px;">
-            <ion-button expand="block" shape="round" color="primary" (click)="login()">Ingresar</ion-button>
+            <ion-button expand="block" shape="round" color="light" (click)="login()">Ingresar</ion-button>
           </div>
 
           <!-- Fila para los botones de restablecer contraseña y registrarme -->
 <ion-row class="ion-margin-top">
   <ion-col>
-    <ion-button expand="full" fill="clear" color="primary" routerLink="/reset-password">
+    <ion-button expand="full" fill="clear" color="light" routerLink="/reset-password">
       Olvidé mi contraseña
     </ion-button>
   </ion-col>
   <ion-col>
-    <ion-button expand="full" fill="clear" color="primary" routerLink="/signup">
+    <ion-button expand="full" fill="clear" color="light" routerLink="/signup">
       Registrarme
     </ion-button>
   </ion-col>
@@ -58,7 +58,7 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="medium">
     <ion-title class="text-center">Derechos reservados</ion-title>
   </ion-toolbar>
 </ion-footer>

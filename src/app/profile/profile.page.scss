@@ -5,14 +5,14 @@
     flex-direction: column;
     height: 100%;
     padding: 20px;
-    background: #f4f6fc; /* Color de fondo suave */
+    background: #03024d; /* Color de fondo suave */
   }
   
   .profile-box {
     width: 100%;
     max-width: 400px;
-    background-color: white;
-    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+    background-color: #030266;
+    box-shadow: #74b7ff;
     border-radius: 12px;
     padding: 20px;
     margin-top: 10px;
@@ -22,13 +22,13 @@
   .profile-title {
     font-size: 1.6em;
     font-weight: bold;
-    color: #3880ff; /* Color de texto principal */
+    color: #ffffff; /* Color de texto principal */
     margin-bottom: 15px;
   }
   
   .profile-subtitle {
     font-size: 1.1em;
-    color: #666; /* Color gris para subtítulo */
+    color: #ffffff; /* Color gris para subtítulo */
     margin-bottom: 20px;
   }
   
@@ -36,7 +36,7 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background-color: #ddd;
+    background-color: #888888;
     margin-bottom: 15px;
     display: inline-block;
   }
@@ -51,7 +51,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 1em;
-    color: #444;
+    color: #ffffff;
     font-weight: normal;
   }
   
@@ -61,23 +61,23 @@
   
   .profile-description {
     font-size: 1.1em;
-    color: #444;
+    color: #ffffff;
     margin-top: 20px;
     padding: 10px;
-    background: #f9f9f9;
+    background: #03024d;
     border-radius: 8px;
   }
   
   .profile-footer {
     margin-top: 20px;
     font-size: 0.9em;
-    color: #aaa;
+    color: #000000;
   }
   
   .edit-button {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #3880ff;
+    background-color: #03024d;
     color: white;
     border-radius: 8px;
     border: none;

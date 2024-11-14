@@ -14,27 +14,49 @@
     <ion-row class="ion-justify-content-center ion-align-items-center" style="height: calc(100vh - 200px);">
       <ion-col size="12" size-md="6" size-lg="4">
         <div class="form-container">
+          <!-- Campo de correo electrónico -->
           <ion-item>
             <ion-icon name="mail-outline" slot="start"></ion-icon>
             <ion-label position="floating" color="dark">Correo Electrónico</ion-label>
             <ion-input type="email" [(ngModel)]="email"></ion-input>
           </ion-item>
+
+          <!-- Campo de nombre de usuario -->
           <ion-item>
             <ion-icon name="person-outline" slot="start"></ion-icon>
             <ion-label position="floating" color="dark">Nombre de Usuario</ion-label>
             <ion-input type="text" [(ngModel)]="username"></ion-input>
           </ion-item>
+
+          <!-- Campo de nombre -->
+          <ion-item>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-label position="floating" color="dark">Nombre</ion-label>
+            <ion-input type="text" [(ngModel)]="firstName"></ion-input>
+          </ion-item>
+
+          <!-- Campo de apellido -->
+          <ion-item>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-label position="floating" color="dark">Apellido</ion-label>
+            <ion-input type="text" [(ngModel)]="lastName"></ion-input>
+          </ion-item>
+
+          <!-- Campo de contraseña -->
           <ion-item>
             <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
             <ion-label position="floating" color="dark">Contraseña</ion-label>
             <ion-input type="password" [(ngModel)]="password"></ion-input>
           </ion-item>
+
+          <!-- Campo de confirmación de contraseña -->
           <ion-item>
             <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
             <ion-label position="floating" color="dark">Confirmar Contraseña</ion-label>
             <ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
           </ion-item>
 
+          <!-- Botón de registro -->
           <div class="button-container" style="margin-top: 20px;">
             <ion-button expand="block" shape="round" color="primary" (click)="register()">Registrarse</ion-button>
           </div>

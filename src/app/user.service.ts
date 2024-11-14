@@ -8,9 +8,9 @@ export class UserService {
   constructor() {}
 
   // Agrega un nuevo usuario
-  async addUser(username: string, password: string) {
+  async addUser(username: string, password: string, firstName: string, lastName: string) {
     const users = await this.getUsers() || [];
-    users.push({ username, password });
+    users.push({ username, password, firstName, lastName });
     await Storage.set({ key: 'users', value: JSON.stringify(users) });
   }
 
@@ -36,14 +36,23 @@ export class UserService {
     await Storage.remove({ key: 'username' });
   }
 
-  // Método para obtener los datos del usuario
+  // Obtiene los datos completos del usuario actual
   async getUserData() {
     const { value } = await Storage.get({ key: 'userData' });
     return JSON.parse(value || '{}'); // Asegura que devuelva un objeto vacío si no hay datos
   }
 
-  // Método para actualizar los datos del usuario
+  // Actualiza los datos del usuario
   async updateUserData(userData: any) {
     await Storage.set({ key: 'userData', value: JSON.stringify(userData) });
+  }
+
+  // Obtiene las iniciales del usuario (primera letra del nombre y apellido)
+  async getUserInitials() {
+    const userData = await this.getUserData();
+    if (userData.firstName && userData.lastName) {
+      return `${userData.firstName[0]}${userData.lastName[0]}`.toUpperCase();
+    }
+    return ''; // Retorna vacío si no hay nombre o apellido
   }
 }

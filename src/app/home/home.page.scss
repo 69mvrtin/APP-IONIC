@@ -1,28 +1,32 @@
 /* Estilos específicos de home.page.scss */
 
-.content-background {
-  background: linear-gradient(to bottom right, #4e4f50, #163c68);
-}
+/* Fondo de la página */
 
+
+/* Texto de clima */
 .weather-text {
-  color: #000000; /* Color del texto del clima */
-  font-size: 16px; /* Tamaño de fuente */
-  text-align: center; /* Centrar el texto */
-  margin: 20px 0; /* Espaciado vertical */
+  color: #f3f3f3;
+  font-size: 16px;
+  text-align: center;
+  margin: 20px 0;
 }
 
+/* Contenedor de formulario */
 .form-container {
+  
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra el contenido horizontalmente */
-  margin-top: 20px; /* Espacio superior para el contenedor */
+  align-items: center;
+  margin-top: 20px;
 }
 
+/* Botón de explorar cursos */
 .explore-courses {
-  width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
-  margin-bottom: 20px; /* Espaciado inferior */
+  width: 100%;
+  margin-bottom: 20px;
 }
 
+/* Estilos para los botones */
 ion-button {
   font-weight: bold;
   font-size: 16px;
@@ -33,47 +37,94 @@ ion-button:hover {
   transform: scale(1.05);
 }
 
+/* Panel de notificaciones */
 .notifications-panel {
-  background-color: #3c87f7; /* Fondo blanco */
+  background-color: #3c87f7;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   padding: 16px;
   box-shadow: 0 -2px 10px rgba(251, 249, 249, 0.2);
-  transition: all 0.3s ease; /* Suavizar la transición */
+  transition: all 0.3s ease;
   position: relative;
   z-index: 10;
 }
 
-  .logo-container {
-    position: absolute;
-    bottom: 20px; /* Ajusta este valor para la distancia desde el borde inferior */
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
+/* Contenedor del logo */
+.logo-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
-  
+
+.logo {
+  width: 100px;
+  height: auto;
+}
+
+/* Estilos para el header personalizado */
 .custom-header {
-  border-bottom-left-radius: 25px; /* Ajusta el valor según tus necesidades */
-  border-bottom-right-radius: 25px; /* Ajusta el valor según tus necesidades */
-  overflow: hidden; /* Asegura que el contenido no se salga del borde redondeado */
-  background-color: #3c87f7; /* Fondo azul */
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  overflow: hidden;
+  background-color: #0044aa;
 }
 
+/* Estilos adicionales para ion-toolbar */
 ion-toolbar {
-  padding-bottom: 20px; /* Ajusta el valor según tus necesidades */
+  padding-bottom: 20px;
 }
 
+/* Estilos del avatar */
+.avatar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #3880ff; /* Color de fondo del avatar */
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  margin-right: 8px; /* Separación del texto de bienvenida */
+}
+
+.menu-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Estilos para el texto de bienvenida */
+.welcome-text {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Ajustes de ion-avatar */
 ion-avatar {
   width: 40px;
   height: 40px;
 }
 
+/* Ajustes para una mejor presentación */
 .logo-container {
   text-align: center;
-  margin-top: 10px; /* Ajusta el valor según tus necesidades */
+  margin-top: 10px;
 }
 
-.logo {
-  width: 100px; /* Ajusta el valor según tus necesidades */
-  height: auto;
+
+.footer-menu ion-icon {
+  padding: 0;
+  margin: 0;
 }
