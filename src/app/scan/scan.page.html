@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title>
+      QR App
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center color-bg">
+
+  <!-- ===== Segments ==== -->
+  <ion-segment [(ngModel)]="segment" mode="ios">
+    <ion-segment-button value="scan">
+      <ion-label>Scan QR</ion-label>
+    </ion-segment-button>
+    
+    <ion-segment-button value="generate">
+      <ion-label>Generate QR</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- ===== Scan QR ==== -->
+  <div *ngIf="segment === 'scan'">
+    if segment is equal to scan
+  </div>
+
+  <!-- ===== Generate QR ==== -->
+<!-- ===== Generate QR ==== -->
+<div class="segment" *ngIf="segment === 'generate'">
+  <div class="segment-content">
+    if segment is equal to generate
+    <div id="qrImage">
+      <div class="d-flex-center">
+        <div class="d-flex-center qr-wrapper">
+        <qr-code [value]="qrText" size="190" errorCorrectionLevel="M"></qr-code>
+        </div>
+        
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+</ion-content>

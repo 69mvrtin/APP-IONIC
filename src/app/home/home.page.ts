@@ -1,3 +1,4 @@
+// home.page.ts
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { UserService } from 'src/app/user.service';
@@ -13,7 +14,7 @@ export class HomePage implements OnInit {
   showMenu = false;
   showNotifications = false;
   username: string = '';
-  initials: string = ''; // Propiedad para las iniciales del avatar
+  initials: string = '';
   weatherData: any;
   notifications: Array<{ title: string; message: string }> = [];
   footerPages = [
@@ -36,10 +37,8 @@ export class HomePage implements OnInit {
       const username = await this.userService.getUsername();
       if (username) {
         this.username = username;
-        this.initials = await this.userService.getUserInitials(); // Obtiene las iniciales del usuario
+        this.initials = await this.userService.getUserInitials();
         this.getUserLocation();
-      } else {
-        console.warn('No se encontró un nombre de usuario almacenado.');
       }
       this.loadNotifications();
     } catch (error) {
@@ -47,13 +46,13 @@ export class HomePage implements OnInit {
     }
   }
 
-  toggleMenu() {
-    this.showMenu = !this.showMenu;
+  async logout() {
+    await this.userService.logout();
+    this.router.navigate(['/login']); // Redirect to login after logout
   }
 
-  toggleNotifications() {
-    this.showNotifications = !this.showNotifications;
-  }
+  toggleMenu() { this.showMenu = !this.showMenu; }
+  toggleNotifications() { this.showNotifications = !this.showNotifications; }
 
   loadNotifications() {
     this.notifications = [
@@ -85,12 +84,8 @@ export class HomePage implements OnInit {
 
   getWeather(lat: number, lon: number) {
     this.weatherService.getWeatherByCoords(lat, lon).subscribe({
-      next: (data: any) => {
-        this.weatherData = data;
-      },
-      error: (error) => {
-        console.error('Error obteniendo el clima', error);
-      }
+      next: (data: any) => { this.weatherData = data; },
+      error: (error) => { console.error('Error obteniendo el clima', error); }
     });
   }
 
@@ -99,22 +94,12 @@ export class HomePage implements OnInit {
       header: 'Contacto',
       message: '¿Deseas contactarnos por WhatsApp?',
       buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-        },
-        {
-          text: 'Abrir WhatsApp',
-          handler: () => {
-            window.open('https://wa.me/+56940974175', '_blank');
-          },
-        },
+        { text: 'Cancelar', role: 'cancel' },
+        { text: 'Abrir WhatsApp', handler: () => { window.open('https://wa.me/+56940974175', '_blank'); } },
       ],
     });
     await alert.present();
   }
 
-  clearNotifications() {
-    this.notifications = [];
-  }
+  clearNotifications() { this.notifications = []; }
 }
