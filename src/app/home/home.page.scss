@@ -5,7 +5,7 @@
 
 /* Texto de clima */
 .weather-text {
-  color: #f3f3f3;
+  color: #ffffff;
   font-size: 16px;
   text-align: center;
   margin: 20px 0;
@@ -39,11 +39,11 @@ ion-button:hover {
 
 /* Panel de notificaciones */
 .notifications-panel {
-  background-color: #3c87f7;
+  background-color: #f7f7f7;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   padding: 16px;
-  box-shadow: 0 -2px 10px rgba(251, 249, 249, 0.2);
+  box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
   position: relative;
   z-index: 10;
@@ -68,7 +68,7 @@ ion-button:hover {
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   overflow: hidden;
-  background-color: #0044aa;
+  background-color: #516583;
 }
 
 /* Estilos adicionales para ion-toolbar */
@@ -87,7 +87,7 @@ ion-toolbar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #3880ff; /* Color de fondo del avatar */
+  background-color: #090909; /* Color de fondo del avatar */
   color: white;
   font-weight: bold;
   font-size: 1.2em;

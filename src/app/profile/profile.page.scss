@@ -5,14 +5,14 @@
     flex-direction: column;
     height: 100%;
     padding: 20px;
-    background: #03024d; /* Color de fondo suave */
+    background: #21286f; /* Color de fondo suave */
   }
   
   .profile-box {
     width: 100%;
     max-width: 400px;
-    background-color: #030266;
-    box-shadow: #74b7ff;
+    background-color: #171717;
+    box-shadow: #000000;
     border-radius: 12px;
     padding: 20px;
     margin-top: 10px;
@@ -36,7 +36,7 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background-color: #888888;
+    background-color: #000000;
     margin-bottom: 15px;
     display: inline-block;
   }
@@ -64,20 +64,20 @@
     color: #ffffff;
     margin-top: 20px;
     padding: 10px;
-    background: #03024d;
+    background: #707070;
     border-radius: 8px;
   }
   
   .profile-footer {
     margin-top: 20px;
     font-size: 0.9em;
-    color: #000000;
+    color: #ffffff;
   }
   
   .edit-button {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #03024d;
+    background-color: #515152;
     color: white;
     border-radius: 8px;
     border: none;
@@ -86,7 +86,7 @@
   }
   
   .edit-button:hover {
-    background-color: #007aff;
+    background-color: #33475c;
   }
   
   .profile-item {
