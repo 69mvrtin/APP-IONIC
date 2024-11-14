@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
   notifications: Array<{ title: string; message: string }> = [];
   footerPages = [
     { link: '/home', icon: 'home-outline' },
-    { link: '/horario', icon: 'mail-open-outline' },
+    { link: '/horario', icon: 'calendar-outline' },
     { link: '/scan', icon: 'qr-code-outline' },
     { link: '/notifications', icon: 'notifications-outline' },
     { link: '/profile', icon: 'person-outline' },
