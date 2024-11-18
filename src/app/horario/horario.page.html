@@ -1,75 +1,79 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title class="page-title-large">Horario</ion-title>
+  <ion-toolbar color="medium">
+    <ion-title>Horario</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="">
+<ion-content [fullscreen]="true">
+  <!-- Encabezado con título grande -->
+
+
+  <!-- Logo y días del horario -->
   <div class="logo-container">
     <img src="assets/img/Logo_Duoc.png" alt="Logo Duoc UC" class="logo">
   </div>
-</ion-content>
 
-<ion-content class="content days-container">
-  <ion-button id="open-popover-Lunes">Lunes</ion-button>
-  <ion-popover trigger="open-popover-Lunes">
-    <ng-template>
-      <ion-list>
-        <ion-item>Libre</ion-item>
-      </ion-list>
-    </ng-template>
-  </ion-popover>
+  <div class="content days-container">
+    <!-- Botones para cada día con sus respectivas popovers -->
+    <ion-button id="open-popover-Lunes">Lunes</ion-button>
+    <ion-popover trigger="open-popover-Lunes">
+      <ng-template>
+        <ion-list>
+          <ion-item>Libre</ion-item>
+        </ion-list>
+      </ng-template>
+    </ion-popover>
 
-  <ion-button id="open-popover-Martes">Martes</ion-button>
-  <ion-popover trigger="open-popover-Martes">
-    <ng-template>
-      <ion-list>
-        <ion-item>ESTADÍSTICA DESCRIPTIVA</ion-item>
-        <ion-item>INGLÉS INTERMEDIO</ion-item>
-        <ion-item>PROGRAMACION APLICACIONES MOVILES</ion-item>
-      </ion-list>
-    </ng-template>
-  </ion-popover>
+    <ion-button id="open-popover-Martes">Martes</ion-button>
+    <ion-popover trigger="open-popover-Martes">
+      <ng-template>
+        <ion-list>
+          <ion-item>ESTADÍSTICA DESCRIPTIVA</ion-item>
+          <ion-item>INGLÉS INTERMEDIO</ion-item>
+          <ion-item>PROGRAMACIÓN APLICACIONES MÓVILES</ion-item>
+        </ion-list>
+      </ng-template>
+    </ion-popover>
 
-  <ion-button id="open-popover-Miercoles">Miercoles</ion-button>
-  <ion-popover trigger="open-popover-Miercoles">
-    <ng-template>
-      <ion-list>
-        <ion-item>ÉTICA PARA EL TRABAJO</ion-item>
-        <ion-item>INGLÉS INTERMEDIO</ion-item>
-      </ion-list>
-    </ng-template>
-  </ion-popover>
+    <ion-button id="open-popover-Miercoles">Miércoles</ion-button>
+    <ion-popover trigger="open-popover-Miercoles">
+      <ng-template>
+        <ion-list>
+          <ion-item>ÉTICA PARA EL TRABAJO</ion-item>
+          <ion-item>INGLÉS INTERMEDIO</ion-item>
+        </ion-list>
+      </ng-template>
+    </ion-popover>
 
-  <ion-button id="open-popover-Jueves">Jueves</ion-button>
-  <ion-popover trigger="open-popover-Jueves">
-    <ng-template>
-      <ion-list>
-        <ion-item>PROGRAMACIÓN DE APLICACIONES MÓVILES</ion-item>
-        <ion-item>INGLÉS INTERMEDIO</ion-item>
-        <ion-item>CALIDAD DE SOFTWARE</ion-item>
-      </ion-list>
-    </ng-template>
-  </ion-popover>
+    <ion-button id="open-popover-Jueves">Jueves</ion-button>
+    <ion-popover trigger="open-popover-Jueves">
+      <ng-template>
+        <ion-list>
+          <ion-item>PROGRAMACIÓN DE APLICACIONES MÓVILES</ion-item>
+          <ion-item>INGLÉS INTERMEDIO</ion-item>
+          <ion-item>CALIDAD DE SOFTWARE</ion-item>
+        </ion-list>
+      </ng-template>
+    </ion-popover>
 
-  <ion-button id="open-popover-Viernes">Viernes</ion-button>
-  <ion-popover trigger="open-popover-Viernes">
-    <ng-template>
-      <ion-list>
-        <ion-item>ESTADÍSTICA DESCRIPTIVA</ion-item>
-        <ion-item>CALIDAD DE SOFTWARE</ion-item>
-        <ion-item>INGLÉS INTERMEDIO</ion-item>
-        <ion-item>ARQUITECTURA</ion-item>
-      </ion-list>
-    </ng-template>
-  </ion-popover>
+    <ion-button id="open-popover-Viernes">Viernes</ion-button>
+    <ion-popover trigger="open-popover-Viernes">
+      <ng-template>
+        <ion-list>
+          <ion-item>ESTADÍSTICA DESCRIPTIVA</ion-item>
+          <ion-item>CALIDAD DE SOFTWARE</ion-item>
+          <ion-item>INGLÉS INTERMEDIO</ion-item>
+          <ion-item>ARQUITECTURA</ion-item>
+        </ion-list>
+      </ng-template>
+    </ion-popover>
+  </div>
 </ion-content>
 
 <ion-footer class="footer-menu">
   <ion-toolbar>
     <ion-grid>
       <ion-row class="ion-justify-content-around">
-        <!-- Botones del footer con un estilo moderno -->
         <ion-col size="auto" *ngFor="let page of footerPages">
           <ion-button color="medium" (click)="page.link === '/notifications' ? toggleNotifications() : navigateTo(page.link)">
             <ion-icon [name]="page.icon" slot="icon-only"></ion-icon>

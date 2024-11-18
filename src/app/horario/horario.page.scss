@@ -1,17 +1,9 @@
-.page-title-large {
-  font-size: 32px;
-  font-weight: bold;
-  color: #fff; /* Letras en blanco */
-  background-color: #ffffff; /* Fondo azul */
-  padding: 10px; /* Espaciado interno */
-  text-align: center; /* Centrar el texto */
-}
 
 
 ion-button {
   margin: 10px;
-  width: 90%; /* Ajusta el ancho de los botones */
-  max-width: 300px; /* Ancho máximo de los botones */
+  width: 90%;
+  max-width: 300px;
 }
 
 ion-popover {
@@ -31,43 +23,17 @@ ion-item {
 .days-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra los elementos horizontalmente */
-  justify-content: center; /* Centra los elementos verticalmente */
-  height: 100vh; /* Asegúrate de que el contenedor ocupe toda la altura de la pantalla */
-  padding: 10px;
-}.page-title-large {
-  font-size: 32px;
-  font-weight: bold;
-  color: #fff; /* Letras en blanco */
-  background-color: #070a35; /* Fondo azul */
-  padding: 10px; /* Espaciado interno */
-  text-align: center; /* Centrar el texto */
-}
-ion-button {
-  margin: 10px;
-  width: 90%; /* Ajusta el ancho de los botones */
-  max-width: 300px; /* Ancho máximo de los botones */
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 10px;
 }
 
-ion-popover {
-  --width: 300px;
-  --height: auto;
+.logo-container {
+  text-align: center;
+  margin: 20px 0;
 }
 
-ion-list {
-  padding: 10px;
-}
-
-ion-item {
-  font-size: 16px;
-  padding: 10px 0;
-}
-
-.days-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centra los elementos horizontalmente */
-  justify-content: center; /* Centra los elementos verticalmente */
-  height: 100vh; /* Asegúrate de que el contenedor ocupe toda la altura de la pantalla */
-  padding: 10px;
+.logo {
+  max-width: 200px;
+  height: auto;
 }
