@@ -1,0 +1,4 @@
+--instalaciones---
+1:npm install @ionic/pwa-elements --legacy-peer-deps
+2:npm install @capacitor/android --legacy-peer-deps
+3:npm install @capacitor/camera --legacy-peer-deps
