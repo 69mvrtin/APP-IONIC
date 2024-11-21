@@ -1,6 +1,7 @@
-<ion-header [translucent]="">
+<!-- src/app/profile/profile.page.html -->
+<ion-header [translucent]="true">
   <ion-toolbar color="medium">
-    <ion-title >Perfil</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +12,7 @@
   <div *ngIf="userData.username; else noData" class="profile-container">
     <div class="profile-box">
       <!-- Foto de perfil -->
-      <div class="profile-avatar" [style.background-image]="'url(' + userData.profilePic + ')'" [style.background-size]="'cover'">
+      <div class="profile-avatar" [style.background-image]="'url(' + profilePic + ')'" [style.background-size]="'cover'">
         <!-- Foto de perfil -->
       </div>
 
@@ -26,27 +27,32 @@
           <span>{{ userData.username }}</span>
         </div>
         <div class="profile-item">
-          <span class="profile-item-label">carrera:</span>
+          <span class="profile-item-label">Carrera:</span>
           <span>{{ userData.email || 'Email not available' }}</span>
         </div>
         <div class="profile-item">
-          <span class="profile-item-label">modalidad:</span>
+          <span class="profile-item-label">Modalidad:</span>
           <span>{{ userData.accountCreated | date:'shortDate' || 'Not available' }}</span>
         </div>
         <div class="profile-item">
-          <span class="profile-item-label">sede:</span>
+          <span class="profile-item-label">Sede:</span>
           <span>{{ userData.location || 'Not provided' }}</span>
         </div>
       </div>
 
       <!-- Descripción del perfil -->
       <div class="profile-description">
-        <strong>sobre mi:</strong>
+        <strong>Sobre mí:</strong>
         <p>{{ userData.bio || 'No description provided.' }}</p>
       </div>
 
       <!-- Botón para editar el perfil -->
-      <button class="edit-button" (click)="editProfile()" routerLink="/edit-profile">editar Perfil</button>
+      <button class="edit-button" (click)="editProfile()" routerLink="/edit-profile">Editar Perfil</button>
+
+      <!-- Botón para cambiar la foto -->
+      
+      <ion-button  (click)="captureProfilePic()">cambiar Foto</ion-button>
+
 
       <!-- Pie de página -->
       <div class="profile-footer">

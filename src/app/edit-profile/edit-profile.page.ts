@@ -8,13 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
-  userData: any = {};
+  userData: any = {};  // Para almacenar los datos del perfil a editar
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   async ngOnInit() {
     try {
-      this.userData = await this.userService.getUserData();
+      const username = await this.userService.getUsername();
+      if (username) {
+        this.userData = await this.userService.getUserData();
+      }
     } catch (error) {
       console.error('Error loading user data:', error);
     }
@@ -23,10 +29,10 @@ export class EditProfilePage implements OnInit {
   async saveChanges() {
     try {
       await this.userService.updateUserData(this.userData);
-      console.log('User data updated successfully:', this.userData);
+      console.log('Profile updated successfully');
       this.router.navigate(['/profile']);
     } catch (error) {
-      console.error('Error saving changes:', error);
+      console.error('Error saving profile:', error);
     }
   }
 

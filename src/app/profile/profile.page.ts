@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/user.service';
-import { Router } from '@angular/router'; // Si deseas redirigir a otra página
 
 @Component({
   selector: 'app-profile',
@@ -8,12 +7,11 @@ import { Router } from '@angular/router'; // Si deseas redirigir a otra página
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  userData: any = {}; // Propiedad para almacenar los datos del usuario
 
-  constructor(
-    private userService: UserService,
-    private router: Router // Si decides redirigir a una página de edición
-  ) {}
+  userData: any = {}; // Para almacenar los datos del usuario
+  profilePic: string = ''; // Para almacenar la URL de la foto de perfil
+
+  constructor(private userService: UserService) { }
 
   async ngOnInit() {
     try {
@@ -21,6 +19,7 @@ export class ProfilePage implements OnInit {
       const username = await this.userService.getUsername();
       if (username) {
         this.userData = await this.userService.getUserData();
+        this.profilePic = await this.userService.getProfilePic(); // Cargar la foto de perfil
         console.log('User data loaded:', this.userData);
       } else {
         console.warn('No username found in localStorage');
@@ -34,6 +33,28 @@ export class ProfilePage implements OnInit {
   editProfile() {
     // Aquí puedes agregar la lógica para editar el perfil. Por ejemplo, podrías navegar a una página de edición
     console.log('Redirecting to edit profile page...');
-    this.router.navigate(['/edit-profile']); // Suponiendo que tienes una página /edit-profile para editar el perfil
+  }
+
+  // Cambiar la foto de perfil usando un input de tipo file
+  async changeProfilePic(event: any) {
+    const file = event.target.files[0]; // Obtener el archivo seleccionado
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = async (e: any) => {
+        this.profilePic = e.target.result; // Mostrar la imagen seleccionada
+        await this.userService.setProfilePic(this.profilePic); // Guardar la imagen en el almacenamiento
+      };
+      reader.readAsDataURL(file); // Leer el archivo como URL de datos
+    }
+  }
+
+  // Tomar una foto con la cámara
+  async captureProfilePic() {
+    try {
+      await this.userService.captureAndSetProfilePic(); // Llama al método del UserService
+      this.profilePic = await this.userService.getProfilePic(); // Actualiza la foto después de capturarla
+    } catch (error) {
+      console.error('Error capturing profile photo:', error);
+    }
   }
 }

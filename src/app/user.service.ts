@@ -1,107 +1,131 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@capacitor/storage';
+import { CameraService } from './camera.service'; // Importamos el servicio de cámara
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UserService {
-  constructor() {}
 
-  // Agregar un nuevo usuario
-  async addUser(username: string, password: string, firstName: string, lastName: string) {
-    const users = await this.getUsers() || [];
-    users.push({ username, password, firstName, lastName, courses: [] });
-    await Storage.set({ key: 'users', value: JSON.stringify(users) });
-  }
+  constructor(private cameraService: CameraService) { }
 
-  // Obtener todos los usuarios
-  async getUsers() {
-    const { value } = await Storage.get({ key: 'users' });
-    return JSON.parse(value || '[]');
-  }
+  // Métodos relacionados con el usuario
 
-  // Obtener el nombre de usuario actual
-  async getUsername() {
+  // Obtiene el nombre de usuario almacenado en el almacenamiento local
+  async getUsername(): Promise<string | null> {
     const { value } = await Storage.get({ key: 'username' });
     return value;
   }
 
-  // Establecer el nombre de usuario actual
+  // Establece el nombre de usuario en el almacenamiento local
   async setUsername(username: string) {
     await Storage.set({ key: 'username', value: username });
   }
 
-  // Eliminar el nombre de usuario actual
-  async removeUsername() {
-    await Storage.remove({ key: 'username' });
-  }
-
-  // Obtener los datos del usuario actual
-  async getUserData() {
+  // Obtiene los datos completos del usuario desde el almacenamiento local
+  async getUserData(): Promise<any> {
     const { value } = await Storage.get({ key: 'userData' });
-    return JSON.parse(value || '{}');
+    return value ? JSON.parse(value) : {};
   }
 
-  // Actualizar los datos del usuario actual
+  // Establece los datos completos del usuario en el almacenamiento local
   async updateUserData(userData: any) {
     await Storage.set({ key: 'userData', value: JSON.stringify(userData) });
   }
 
-  // Obtener las iniciales del usuario actual
-  async getUserInitials() {
+  // Obtiene las iniciales del usuario (por ejemplo, 'AB')
+  async getUserInitials(): Promise<string> {
     const userData = await this.getUserData();
-    if (userData.firstName && userData.lastName) {
-      return `${userData.firstName[0]}${userData.lastName[0]}`.toUpperCase();
-    }
-    return '';
+    const initials = (userData.firstName && userData.lastName) 
+      ? (userData.firstName[0] + userData.lastName[0]).toUpperCase()
+      : '';
+    return initials;
   }
 
-  // Método para restablecer la contraseña
+  // Establece la foto de perfil en el almacenamiento local
+  async setProfilePic(profilePic: string) {
+    await Storage.set({ key: 'profilePic', value: profilePic });
+  }
+
+  // Obtiene la foto de perfil del almacenamiento local
+  async getProfilePic(): Promise<string> {
+    const { value } = await Storage.get({ key: 'profilePic' });
+    return value || ''; // Devuelve la URL de la foto de perfil, o cadena vacía si no está definida
+  }
+
+  // Nueva función para capturar una foto y guardarla como foto de perfil
+  async captureAndSetProfilePic(): Promise<void> {
+    // Capturamos la foto utilizando el servicio de cámara
+    const photo = await this.cameraService.capturePhoto();
+    if (photo) {
+      await this.setProfilePic(photo); // Guardamos la foto en el almacenamiento
+      console.log('Profile picture updated');
+    } else {
+      console.error('Failed to capture photo');
+    }
+  }
+
+  // Métodos para manejar los cursos
+
+  // Obtener los cursos de un usuario
+  async getCourses(username: string): Promise<any[]> {
+    const { value } = await Storage.get({ key: `courses_${username}` });
+    return value ? JSON.parse(value) : [];
+  }
+
+  // Agregar un curso al usuario
+  async addCourse(username: string, course: any) {
+    const courses = await this.getCourses(username);
+    courses.push(course);
+    await Storage.set({ key: `courses_${username}`, value: JSON.stringify(courses) });
+  }
+
+  // Eliminar un curso del usuario
+  async deleteCourse(username: string, courseTitle: string) {
+    const courses = await this.getCourses(username);
+    const updatedCourses = courses.filter(course => course.title !== courseTitle);
+    await Storage.set({ key: `courses_${username}`, value: JSON.stringify(updatedCourses) });
+  }
+
+  // Métodos de autenticación (login/logout)
+
+  // Iniciar sesión (simulación)
+  async login(username: string, password: string): Promise<boolean> {
+    // Lógica de autenticación aquí (puedes usar una base de datos real o un mock)
+    // Ejemplo de inicio de sesión exitoso
+    return true;
+  }
+
+  // Cerrar sesión (simulación)
+  async logout(): Promise<void> {
+    await Storage.remove({ key: 'username' });
+    await Storage.remove({ key: 'userData' });
+    await Storage.remove({ key: 'profilePic' });
+  }
+
+  // Obtener todos los usuarios (simulación)
+  async getUsers(): Promise<any[]> {
+    const { value } = await Storage.get({ key: 'users' });
+    return value ? JSON.parse(value) : [];
+  }
+
+  // Agregar un nuevo usuario (simulación)
+  async addUser(username: string, password: string, firstName: string, lastName: string) {
+    const users = await this.getUsers();
+    const newUser = { username, password, firstName, lastName };
+    users.push(newUser);
+    await Storage.set({ key: 'users', value: JSON.stringify(users) });
+  }
+
+  // Cambiar la contraseña de un usuario
   async changePassword(username: string, newPassword: string): Promise<boolean> {
     const users = await this.getUsers();
-    const userIndex = users.findIndex((user: any) => user.username === username);
-
-    if (userIndex !== -1) {
-      users[userIndex].password = newPassword;
+    const user = users.find(u => u.username === username);
+    if (user) {
+      user.password = newPassword;
       await Storage.set({ key: 'users', value: JSON.stringify(users) });
       return true;
     }
-
     return false;
-  }
-
-  // Métodos para gestionar cursos
-  async addCourse(username: string, course: { id: number; title: string; description: string; room: string }) {
-    const users = await this.getUsers();
-    const userIndex = users.findIndex((u: any) => u.username === username);
-
-    if (userIndex !== -1) {
-      users[userIndex].courses = users[userIndex].courses || [];
-      users[userIndex].courses.push(course);
-      await Storage.set({ key: 'users', value: JSON.stringify(users) });
-    }
-  }
-
-  async getCourses(username: string) {
-    const users = await this.getUsers();
-    const user = users.find((u: any) => u.username === username);
-    return user?.courses || [];
-  }
-
-  async deleteCourse(username: string, courseTitle: string) {
-    const users = await this.getUsers();
-    const userIndex = users.findIndex((u: any) => u.username === username);
-
-    if (userIndex !== -1) {
-      users[userIndex].courses = users[userIndex].courses.filter(
-        (course: any) => course.title !== courseTitle
-      );
-      await Storage.set({ key: 'users', value: JSON.stringify(users) });
-    }
-  }
-
-  // Método para cerrar sesión
-  async logout() {
-    await Storage.remove({ key: 'username' });
   }
 }
