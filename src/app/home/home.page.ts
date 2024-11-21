@@ -1,4 +1,3 @@
-// home.page.ts
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { UserService } from 'src/app/user.service';
@@ -39,20 +38,28 @@ export class HomePage implements OnInit {
         this.username = username;
         this.initials = await this.userService.getUserInitials();
         this.getUserLocation();
+      } else {
+        this.router.navigate(['/login']); // Redirigir si no hay sesión activa
       }
       this.loadNotifications();
     } catch (error) {
       console.error('Error al obtener el nombre de usuario', error);
+      this.router.navigate(['/login']); // Manejar errores
     }
   }
 
   async logout() {
     await this.userService.logout();
-    this.router.navigate(['/login']); // Redirect to login after logout
+    this.router.navigate(['/login']); // Redirigir al login
   }
 
-  toggleMenu() { this.showMenu = !this.showMenu; }
-  toggleNotifications() { this.showNotifications = !this.showNotifications; }
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
+  }
+
+  toggleNotifications() {
+    this.showNotifications = !this.showNotifications;
+  }
 
   loadNotifications() {
     this.notifications = [
@@ -84,22 +91,34 @@ export class HomePage implements OnInit {
 
   getWeather(lat: number, lon: number) {
     this.weatherService.getWeatherByCoords(lat, lon).subscribe({
-      next: (data: any) => { this.weatherData = data; },
-      error: (error) => { console.error('Error obteniendo el clima', error); }
+      next: (data: any) => {
+        this.weatherData = data;
+      },
+      error: (error) => {
+        console.error('Error obteniendo el clima', error);
+      },
     });
   }
 
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'Contacto',
-      message: '¿Deseas contactarnos por WhatsApp?',
-      buttons: [
-        { text: 'Cancelar', role: 'cancel' },
-        { text: 'Abrir WhatsApp', handler: () => { window.open('https://wa.me/+56940974175', '_blank'); } },
-      ],
-    });
-    await alert.present();
-  }
+async presentAlert() {
+  const alert = await this.alertController.create({
+    header: 'Contacto',
+    message: '¿Deseas contactarnos por WhatsApp?',
+    buttons: [
+      { text: 'Cancelar', role: 'cancel' },
+      { 
+        text: 'Abrir WhatsApp', 
+        handler: () => {
+          window.open('https://wa.me/+56940974175', '_blank');
+          return true; // Esto asegura compatibilidad con el tipo esperado
+        }
+      },
+    ],
+  });
+  await alert.present();
+}
 
-  clearNotifications() { this.notifications = []; }
+  clearNotifications() {
+    this.notifications = [];
+  }
 }

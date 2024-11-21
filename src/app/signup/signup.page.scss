@@ -1,0 +1,58 @@
+.content-background {
+    background-color: #f0f4f7;
+  }
+  
+  .register-message {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .register-message .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .register-message .subtitle {
+    font-size: 16px;
+    color: #ffffff;
+  }
+  
+  .form-container {
+    background: #666;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-item {
+    --background: transparent;
+    --border-radius: 10px;
+    --padding-start: 10px;
+    margin-bottom: 15px;
+    background: #f9f9f9;
+  }
+  
+  .custom-item ion-label {
+    color: #666;
+  }
+  
+  .custom-item ion-input {
+    color: #333;
+  }
+  
+  .custom-item ion-icon {
+    color: #666;
+  }
+  
+  .button-container {
+    margin-top: 20px;
+  }
+  
+  ion-button {
+    --background: #3c87f7;
+    --background-hover: #3368d4;
+    --border-radius: 20px;
+    font-weight: bold;
+  }
+  

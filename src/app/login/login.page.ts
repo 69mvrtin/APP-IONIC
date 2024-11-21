@@ -11,33 +11,30 @@ import { AlertController } from '@ionic/angular';
 export class LoginPage {
   username: string = '';
   password: string = '';
-  message: string = '';  // Propiedad para almacenar el mensaje
-  isSuccess: boolean = false;  // Propiedad para controlar el estado de éxito
+  message: string = ''; // Mensaje informativo
+  isSuccess: boolean = false; // Indica si el inicio de sesión fue exitoso
 
   constructor(
     private userService: UserService,
     private router: Router,
-    private alertController: AlertController,
+    private alertController: AlertController
   ) {}
 
   async login() {
-    // Obtener usuarios almacenados
     const users = await this.userService.getUsers();
-    
-    // Verificar si las credenciales son correctas
-    const user = users.find((u: { username: string; password: string; }) => 
+    const user = users.find((u: { username: string; password: string }) => 
       u.username === this.username && u.password === this.password
     );
 
     if (user) {
-      this.userService.setUsername(this.username); // Guarda el nombre del usuario
+      await this.userService.setUsername(this.username); // Guardar el nombre de usuario
       this.router.navigate(['/home']);
-      this.message = 'Inicio de sesión exitoso.'; // Mensaje de éxito
-      this.isSuccess = true; // Indica éxito
+      this.message = 'Inicio de sesión exitoso.';
+      this.isSuccess = true;
     } else {
       this.presentAlert('Credenciales Incorrectas', 'El nombre de usuario o la contraseña son incorrectos. Por favor, inténtalo de nuevo.');
-      this.message = 'Credenciales incorrectas'; // Mensaje de error
-      this.isSuccess = false; // Indica error
+      this.message = 'Credenciales incorrectas';
+      this.isSuccess = false;
     }
   }
 
@@ -45,15 +42,8 @@ export class LoginPage {
     const alert = await this.alertController.create({
       header,
       message,
-      buttons: [
-        {
-          text: 'Aceptar',
-          handler: () => {
-            // Aquí puedes agregar cualquier lógica adicional que desees
-          }
-        }
-      ],
-      cssClass: 'custom-alert' // Clase CSS personalizada
+      buttons: [{ text: 'Aceptar' }],
+      cssClass: 'custom-alert',
     });
     await alert.present();
   }

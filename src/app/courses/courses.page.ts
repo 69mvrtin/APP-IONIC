@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular'; // Importar NavController
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-courses',
@@ -7,40 +8,67 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./courses.page.scss'],
 })
 export class CoursesPage implements OnInit {
-  courses = [
-    { id: 1, title: 'Ingles Avanzado', description: 'Aprende Ingles avananzado.' },
-    { id: 2, title: 'Programacion De APP Moviles', description: 'Crea app moviles atractivas y funcionales.' },
-    { id: 3, title: 'Arquitectura', description: 'Mejora tus habilidades en marketing online.' },
-    { id: 4, title: 'Calidad de Software', description: 'Aprende a capturar momentos únicos.' },
-    { id: 5, title: 'Estadistica Descriptiva', description: 'Aprende a capturar momentos únicos.' },
-    { id: 6, title: 'Etica para el trabajo', description: 'Aprende a capturar momentos únicos.' },
-  ];
+  courses: Array<{ id: number; title: string; description: string; room: string }> = [];
+  username: string = '';
 
-  constructor(private alertController: AlertController) { }
+  constructor(
+    private alertController: AlertController,
+    private userService: UserService,
+    private navController: NavController // Inyectar NavController
+  ) {}
 
-  ngOnInit() {}
-
-  toggleMenu() {
-    console.log('Menu toggled');
+  async ngOnInit() {
+    const username = await this.userService.getUsername();
+    this.username = username || ''; // Si username es null, asigna una cadena vacía.
+    this.courses = await this.userService.getCourses(this.username);
   }
 
-  async presentAlert() {
+  async addCourse() {
     const alert = await this.alertController.create({
-      header: 'Contacto',
-      message: '¿Deseas contactarnos por WhatsApp?',
+      header: 'Agregar Curso',
+      inputs: [
+        { name: 'title', placeholder: 'Título del curso' },
+        { name: 'description', placeholder: 'Descripción del curso' },
+        { name: 'room', placeholder: 'Número de sala', type: 'text' }, // Añadir un campo para seleccionar la sala
+      ],
       buttons: [
+        { text: 'Cancelar', role: 'cancel' },
         {
-          text: 'Cancelar',
-          role: 'cancel',
-        },
-        {
-          text: 'Abrir WhatsApp',
-          handler: () => {
-            window.open('https://wa.me/+56940974175', '_blank');
+          text: 'Agregar',
+          handler: async (data) => {
+            if (data.title && data.description && data.room) {
+              // Generar un ID único para el curso
+              const newId = Date.now(); // Usamos el tiempo actual como un ID único
+
+              // Llamar al servicio para agregar el curso con id y room
+              await this.userService.addCourse(this.username, {
+                id: newId, // Agregar el ID al curso
+                title: data.title,
+                description: data.description,
+                room: data.room, // Asignar la sala seleccionada
+              });
+
+              // Actualizar la lista de cursos
+              this.courses = await this.userService.getCourses(this.username);
+            }
           },
         },
       ],
     });
     await alert.present();
+  }
+
+  async deleteCourse(courseTitle: string) {
+    await this.userService.deleteCourse(this.username, courseTitle);
+    this.courses = await this.userService.getCourses(this.username);
+  }
+
+  // Función para registrar asistencia (redirige a la página scan)
+  async registerAttendance(courseId: number, courseRoom: string) {
+    console.log(`Registrando asistencia para el curso ID: ${courseId} en la sala ${courseRoom}`);
+    // Redirigir a la página scan, pasando los parámetros del curso
+    await this.navController.navigateForward(`/scan`, {
+      queryParams: { courseId, courseRoom },
+    });
   }
 }

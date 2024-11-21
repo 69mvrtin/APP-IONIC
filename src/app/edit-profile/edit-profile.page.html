@@ -15,18 +15,36 @@
           </ion-item>
 
           <ion-item>
-            <ion-label  color="light" position="floating">Correo Electrónico</ion-label>
-            <ion-input type="email" [(ngModel)]="userData.email" name="email" required></ion-input>
+            <ion-label color="light" position="floating">Correo Electrónico</ion-label>
+            <ion-input [(ngModel)]="userData.email" name="email" required></ion-input>
           </ion-item>
 
           <ion-item>
-            <ion-label color="light" position="floating">Nueva Contraseña</ion-label>
-            <ion-input type="password" [(ngModel)]="newPassword" name="newPassword"></ion-input>
+            <ion-label color="light" position="floating">Carrera</ion-label>
+            <ion-select [(ngModel)]="userData.career" name="career">
+              <ion-select-option value="Ingeniería en Informática">Ingeniería en Informática</ion-select-option>
+              <ion-select-option value="Ingeniería Civil">Ingeniería Civil</ion-select-option>
+              <ion-select-option value="Derecho">Derecho</ion-select-option>
+              <!-- Agrega más opciones aquí -->
+            </ion-select>
           </ion-item>
 
           <ion-item>
-            <ion-label color="light" position="floating">Confirmar Contraseña</ion-label>
-            <ion-input type="password" [(ngModel)]="confirmPassword" name="confirmPassword"></ion-input>
+            <ion-label color="light" position="floating">Modalidad</ion-label>
+            <ion-select [(ngModel)]="userData.modalidad" name="modalidad">
+              <ion-select-option value="Presencial">Presencial</ion-select-option>
+              <ion-select-option value="Online">Online</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label color="light" position="floating">Ubicación</ion-label>
+            <ion-input [(ngModel)]="userData.location" name="location"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label color="light" position="floating">Descripción</ion-label>
+            <ion-textarea [(ngModel)]="userData.bio" name="bio"></ion-textarea>
           </ion-item>
 
           <div class="button-container ion-padding">
