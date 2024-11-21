@@ -15,55 +15,55 @@
 
   <div class="content days-container">
     <!-- Botones para cada día con sus respectivas popovers -->
-    <ion-button id="open-popover-Lunes">Lunes</ion-button>
+    <ion-button id="open-popover-Lunes"color="medium">Lunes</ion-button>
     <ion-popover trigger="open-popover-Lunes">
       <ng-template>
         <ion-list>
-          <ion-item>Libre</ion-item>
+          <ion-item color="medium" >Libre</ion-item>
         </ion-list>
       </ng-template>
     </ion-popover>
 
-    <ion-button id="open-popover-Martes">Martes</ion-button>
+    <ion-button id="open-popover-Martes"color="medium">Martes</ion-button>
     <ion-popover trigger="open-popover-Martes">
       <ng-template>
         <ion-list>
-          <ion-item>ESTADÍSTICA DESCRIPTIVA</ion-item>
-          <ion-item>INGLÉS INTERMEDIO</ion-item>
-          <ion-item>PROGRAMACIÓN APLICACIONES MÓVILES</ion-item>
+          <ion-item color="medium">ESTADÍSTICA DESCRIPTIVA</ion-item>
+          <ion-item color="medium">INGLÉS INTERMEDIO</ion-item>
+          <ion-item color="medium">PROGRAMACIÓN APLICACIONES MÓVILES</ion-item>
         </ion-list>
       </ng-template>
     </ion-popover>
 
-    <ion-button id="open-popover-Miercoles">Miércoles</ion-button>
+    <ion-button id="open-popover-Miercoles"color="medium">Miércoles</ion-button>
     <ion-popover trigger="open-popover-Miercoles">
       <ng-template>
         <ion-list>
-          <ion-item>ÉTICA PARA EL TRABAJO</ion-item>
-          <ion-item>INGLÉS INTERMEDIO</ion-item>
+          <ion-item color="medium" >ÉTICA PARA EL TRABAJO</ion-item>
+          <ion-item color="medium" >INGLÉS INTERMEDIO</ion-item>
         </ion-list>
       </ng-template>
     </ion-popover>
 
-    <ion-button id="open-popover-Jueves">Jueves</ion-button>
+    <ion-button id="open-popover-Jueves"color="medium">Jueves</ion-button>
     <ion-popover trigger="open-popover-Jueves">
       <ng-template>
         <ion-list>
-          <ion-item>PROGRAMACIÓN DE APLICACIONES MÓVILES</ion-item>
-          <ion-item>INGLÉS INTERMEDIO</ion-item>
-          <ion-item>CALIDAD DE SOFTWARE</ion-item>
+          <ion-item color="medium" >PROGRAMACIÓN DE APLICACIONES MÓVILES</ion-item>
+          <ion-item color="medium" >INGLÉS INTERMEDIO</ion-item>
+          <ion-item color="medium">CALIDAD DE SOFTWARE</ion-item>
         </ion-list>
       </ng-template>
     </ion-popover>
 
-    <ion-button id="open-popover-Viernes">Viernes</ion-button>
+    <ion-button id="open-popover-Viernes" color="medium">Viernes</ion-button>
     <ion-popover trigger="open-popover-Viernes">
       <ng-template>
         <ion-list>
-          <ion-item>ESTADÍSTICA DESCRIPTIVA</ion-item>
-          <ion-item>CALIDAD DE SOFTWARE</ion-item>
-          <ion-item>INGLÉS INTERMEDIO</ion-item>
-          <ion-item>ARQUITECTURA</ion-item>
+          <ion-item color="medium" >ESTADÍSTICA DESCRIPTIVA</ion-item>
+          <ion-item color="medium" >CALIDAD DE SOFTWARE</ion-item>
+          <ion-item color="medium" >INGLÉS INTERMEDIO</ion-item>
+          <ion-item color="medium" >ARQUITECTURA</ion-item>
         </ion-list>
       </ng-template>
     </ion-popover>
@@ -93,6 +93,6 @@
         {{ notification.message }}
       </ion-card-content>
     </ion-card>
-    <ion-button expand="full" (click)="clearNotifications()">Limpiar Notificaciones</ion-button>
+    <ion-button expand="full" (click)="clearNotifications()" color="medium">Limpiar Notificaciones</ion-button>
   </div>
 </ion-footer>

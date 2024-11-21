@@ -10,14 +10,14 @@
 </ion-header>
 
 <ion-content class="content-background">
-  <div class="courses-container">
-    <ion-card *ngFor="let course of courses">
+  <div color=" light" class="courses-container">
+    <ion-card color="medium" *ngFor="let course of courses">
       <ion-card-header>
-        <ion-card-title>{{ course.title }}</ion-card-title>
+        <ion-card-title>  {{  course.title }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <p>{{ course.description }}</p>
-        <p><strong>Sala: </strong>{{ course.room }}</p>
+        <p><strong> Sala: </strong>{{ course.room }}</p>
         <!-- Botón para registrar asistencia -->
         <ion-button color="primary" (click)="registerAttendance(course.id, course.room)">
           Registrar Asistencia

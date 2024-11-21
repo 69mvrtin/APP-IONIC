@@ -46,7 +46,7 @@
 
 /* Descripción del curso */
 .course-card p {
-  color: #707070; /* Texto gris para la descripción */
+  color: #ffffff; /* Texto gris para la descripción */
   font-size: 1rem;
   margin-bottom: 10px;
   line-height: 1.5;
@@ -67,21 +67,21 @@ ion-button {
 /* Estilo de los botones cuando se pasa el mouse por encima */
 ion-button:hover {
   transform: scale(1.05);
-  background-color: #3c87f7; /* Cambia a color azul al hacer hover */
+  background-color: #0064fa; /* Cambia a color azul al hacer hover */
 }
 
 /* Botones específicos de eliminar y registrar asistencia */
 ion-button[color='danger'] {
-  background-color: #f75e5e; /* Rojo para eliminar */
+  background-color: #c30f0f; /* Rojo para eliminar */
   color: white;
 }
 
 ion-button[color='danger']:hover {
-  background-color: #f44336; /* Rojo más intenso al hacer hover */
+  background-color: #f9f9f9; /* Rojo más intenso al hacer hover */
 }
 
 ion-button[color='primary'] {
-  background-color: #3c87f7; /* Azul para registrar asistencia */
+  background-color: #0d00ff; /* Azul para registrar asistencia */
   color: white;
 }
 
