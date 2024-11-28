@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
 import { BarcodeScanningModalComponent } from './barcode-scanning-modal.component'; // Ajusta la ruta según sea necesario
 import { LensFacing, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
+import { Camera } from '@capacitor/camera'; // Importa la clase Camera
 
 @Component({
   selector: 'app-scan',
@@ -18,7 +19,29 @@ export class ScanPage implements OnInit {
     private platform: Platform // Inyectamos Platform
   ) {}
 
+  async ngOnInit() {
+    // Verifica si la plataforma es Capacitor y solicita permisos de cámara
+    if (this.platform.is('capacitor')) {
+      try {
+        const status = await Camera.requestPermissions();
+        console.log('Camera permission status:', status);
+      } catch (error) {
+        console.error('Error requesting camera permission:', error);
+      }
+
+      BarcodeScanner.isSupported().then((supported) => {
+        console.log('Scanner supported:', supported);
+      });
+
+      BarcodeScanner.checkPermissions().then((permissions) => {
+        console.log('Permissions:', permissions);
+      });
+      BarcodeScanner.removeAllListeners();
+    }
+  }
+
   async starscan() {
+    console.log('Iniciando escaneo...');
     const modal = await this.modalController.create({
       component: BarcodeScanningModalComponent,
       cssClass: 'barcode-scanning-modal',
@@ -35,19 +58,6 @@ export class ScanPage implements OnInit {
 
     if (data) {
       this.scannedCode = data?.barcode?.displayValue;
-    }
-  }
-
-  ngOnInit(): void {
-    if (this.platform.is('capacitor')) {
-      BarcodeScanner.isSupported().then((supported) => {
-        console.log('Scanner supported:', supported);
-      });
-
-      BarcodeScanner.checkPermissions().then((permissions) => {
-        console.log('Permissions:', permissions);
-      });
-      BarcodeScanner.removeAllListeners();
     }
   }
 }
