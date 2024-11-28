@@ -12,11 +12,11 @@
       <ion-text color="light" class="welcome-text">Bienvenido, {{ username }}</ion-text>
     </ion-title>
 
-<ion-buttons slot="end">
-  <ion-button fill="clear" (click)="logout()">
-    <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
-  </ion-button>
-</ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="logout()">
+        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 
   <!-- Logo principal debajo del toolbar -->
@@ -24,8 +24,6 @@
     <img src="assets/img/Logo_Duoc.png" alt="Logo Duoc UC" class="logo">
   </div>
 </ion-header>
-
-
 
 <ion-content id="main-content" class="content-background">
   <!-- Sección de Clima como texto lineal -->
@@ -48,30 +46,19 @@
     <img src="assets/img/Logo_Duoc.png" alt="Logo Duoc UC" class="logo">
   </div>
 </ion-content>
+
 <ion-footer class="footer-menu">
   <ion-toolbar>
     <ion-grid>
       <ion-row class="ion-justify-content-around">
         <!-- Botones del footer con un estilo moderno -->
-        <ion-col size="auto" *ngFor="let page of footerPages">
-          <ion-button  color="medium" (click)="page.link === '/notifications' ? toggleNotifications() : navigateTo(page.link)">
-            <ion-icon [name]="page.icon" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-col>
+<ion-col size="auto" *ngFor="let page of footerPages">
+  <ion-button color="medium" (click)="page.link === '/notifications' ? toggleNotifications() : navigateTo(page.link)">
+    <ion-icon [name]="page.icon" slot="icon-only"></ion-icon>
+  </ion-button>
+</ion-col>
+
       </ion-row>
     </ion-grid>
   </ion-toolbar>
-
-  <!-- Contenedor de notificaciones -->
-  <div *ngIf="showNotifications" class="notifications-panel">
-    <ion-card *ngFor="let notification of notifications">
-      <ion-card-header>
-        <ion-card-title>{{ notification.title }}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        {{ notification.message }}
-      </ion-card-content>
-    </ion-card>
-    <ion-button expand="full" (click)="clearNotifications()">Limpiar Notificaciones</ion-button>
-  </div>
 </ion-footer>

@@ -15,7 +15,9 @@ const routes: Routes = [
   { path: 'edit-profile', loadChildren: () => import('./edit-profile/edit-profile.module').then(m => m.EditProfilePageModule), canActivate: [AuthGuard] },
   { path: 'horario', loadChildren: () => import('./horario/horario.module').then(m => m.HorarioPageModule), canActivate: [AuthGuard] },
   { path: 'scan', loadChildren: () => import('./scan/scan.module').then(m => m.ScanPageModule), canActivate: [AuthGuard] },
+  { path: 'profile-profesor', loadChildren: () => import('./profile-profesor/profile-profesor.module').then( m => m.ProfileProfesorPageModule),canActivate: [AuthGuard]},
   { path: '**', component: PageNotFoundComponent },
+
 ];
 
 @NgModule({

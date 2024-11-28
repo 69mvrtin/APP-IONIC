@@ -11,8 +11,8 @@ import { AlertController } from '@ionic/angular';
 export class LoginPage {
   username: string = '';
   password: string = '';
-  message: string = ''; // Mensaje informativo
-  isSuccess: boolean = false; // Indica si el inicio de sesión fue exitoso
+  message: string = '';
+  isSuccess: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -22,12 +22,14 @@ export class LoginPage {
 
   async login() {
     const users = await this.userService.getUsers();
-    const user = users.find((u: { username: string; password: string }) => 
+    const user = users.find((u: { username: string; password: string }) =>
       u.username === this.username && u.password === this.password
     );
-
+  
     if (user) {
-      await this.userService.setUsername(this.username); // Guardar el nombre de usuario
+      // Guardamos todos los datos del usuario, incluido el tipo
+      await this.userService.updateUserData(user);
+      await this.userService.setUsername(this.username);
       this.router.navigate(['/home']);
       this.message = 'Inicio de sesión exitoso.';
       this.isSuccess = true;
@@ -37,6 +39,7 @@ export class LoginPage {
       this.isSuccess = false;
     }
   }
+  
 
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({

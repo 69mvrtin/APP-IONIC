@@ -42,6 +42,16 @@
             <ion-input type="text" [(ngModel)]="lastName"></ion-input>
           </ion-item>
 
+          <!-- Campo de tipo de usuario -->
+          <ion-item lines="none" class="custom-item">
+            <ion-icon name="school-outline" slot="start"></ion-icon>
+            <ion-label position="floating">Tipo de Usuario</ion-label>
+            <ion-select [(ngModel)]="userType">
+              <ion-select-option value="alumno">Alumno</ion-select-option>
+              <ion-select-option value="profesor">Profesor</ion-select-option>
+            </ion-select>
+          </ion-item>
+
           <!-- Campo de contraseña -->
           <ion-item lines="none" class="custom-item">
             <ion-icon name="lock-closed-outline" slot="start"></ion-icon>

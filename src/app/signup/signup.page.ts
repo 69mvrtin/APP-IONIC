@@ -13,8 +13,9 @@ export class SignupPage {
   username: string = '';
   password: string = '';
   confirmPassword: string = '';
-  firstName: string = '';  // Nuevo campo
-  lastName: string = '';   // Nuevo campo
+  firstName: string = '';
+  lastName: string = '';
+  userType: string = '';
 
   constructor(
     private userService: UserService,
@@ -23,6 +24,11 @@ export class SignupPage {
   ) {}
 
   async register() {
+    if (!this.userType) {
+      await this.showAlert('Error', 'Por favor selecciona si eres Alumno o Profesor.');
+      return;
+    }
+
     const users = (await this.userService.getUsers()) || [];
     const userExists = users.some((user: { username: string }) => user.username === this.username);
 
@@ -36,26 +42,16 @@ export class SignupPage {
       return;
     }
 
-    // Registro de usuario con nombre y apellido
-    await this.userService.addUser(this.username, this.password, this.firstName, this.lastName);
-
-    const userData = {
-      username: this.username,
-      email: this.email,
-      firstName: this.firstName,  // Guarda el nombre
-      lastName: this.lastName,    // Guarda el apellido
-    };
-    await this.userService.updateUserData(userData);
-
-    await this.showAlert('Registro Exitoso', '¡Usuario registrado correctamente!');
+    await this.userService.addUser(this.username, this.password, this.firstName, this.lastName, this.userType);
     this.router.navigate(['/login']);
+    await this.showAlert('Registro Exitoso', 'Tu cuenta ha sido creada correctamente.');
   }
 
   async showAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
       message,
-      buttons: ['OK']
+      buttons: ['OK'],
     });
     await alert.present();
   }

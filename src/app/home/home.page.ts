@@ -14,15 +14,10 @@ export class HomePage implements OnInit {
   showNotifications = false;
   username: string = '';
   initials: string = '';
+  userType: string = ''; // Nueva variable para almacenar el tipo de usuario
   weatherData: any;
   notifications: Array<{ title: string; message: string }> = [];
-  footerPages = [
-    { link: '/home', icon: 'home-outline' },
-    { link: '/horario', icon: 'calendar-outline' },
-    { link: '/scan', icon: 'qr-code-outline' },
-    { link: '/notifications', icon: 'notifications-outline' },
-    { link: '/profile', icon: 'person-outline' },
-  ];
+  footerPages: Array<{ link: string; icon: string }> = []; // Declaración de footerPages
 
   constructor(
     private userService: UserService,
@@ -30,13 +25,15 @@ export class HomePage implements OnInit {
     private weatherService: WeatherService,
     private router: Router
   ) {}
-
   async ngOnInit() {
     try {
       const username = await this.userService.getUsername();
       if (username) {
         this.username = username;
         this.initials = await this.userService.getUserInitials();
+        this.userType = await this.userService.getUserType() || 'default'; // Valor por defecto
+        // Llama a updateFooterPages después de que userType se haya asignado
+        this.updateFooterPages(); 
         this.getUserLocation();
       } else {
         this.router.navigate(['/login']); // Redirigir si no hay sesión activa
@@ -45,6 +42,30 @@ export class HomePage implements OnInit {
     } catch (error) {
       console.error('Error al obtener el nombre de usuario', error);
       this.router.navigate(['/login']); // Manejar errores
+    }
+  }
+  
+  updateFooterPages() {
+    console.log('UserType:', this.userType); // Depuración para verificar el valor de userType
+    this.footerPages = [
+      { link: '/home', icon: 'home-outline' },
+      { link: '/horario', icon: 'calendar-outline' },
+      { link: '/scan', icon: 'qr-code-outline' },
+      { link: '/notifications', icon: 'notifications-outline' },
+      {
+        link: this.userType === 'profesor' ? '/profile-profesor' : '/profile',
+        icon: 'person-outline'
+      }
+    ];
+  }
+  
+
+  // Método para redirigir a la página de perfil adecuada según el tipo de usuario
+  navigateToProfile() {
+    if (this.userType === 'profesor') {
+      this.router.navigate(['/profile-profesor']);
+    } else {
+      this.router.navigate(['/profile']);
     }
   }
 
@@ -100,23 +121,23 @@ export class HomePage implements OnInit {
     });
   }
 
-async presentAlert() {
-  const alert = await this.alertController.create({
-    header: 'Contacto',
-    message: '¿Deseas contactarnos por WhatsApp?',
-    buttons: [
-      { text: 'Cancelar', role: 'cancel' },
-      { 
-        text: 'Abrir WhatsApp', 
-        handler: () => {
-          window.open('https://wa.me/+56940974175', '_blank');
-          return true; // Esto asegura compatibilidad con el tipo esperado
-        }
-      },
-    ],
-  });
-  await alert.present();
-}
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Contacto',
+      message: '¿Deseas contactarnos por WhatsApp?',
+      buttons: [
+        { text: 'Cancelar', role: 'cancel' },
+        { 
+          text: 'Abrir WhatsApp', 
+          handler: () => {
+            window.open('https://wa.me/+56940974175', '_blank');
+            return true; // Esto asegura compatibilidad con el tipo esperado
+          }
+        },
+      ],
+    });
+    await alert.present();
+  }
 
   clearNotifications() {
     this.notifications = [];
