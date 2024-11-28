@@ -1,8 +1,6 @@
 <ion-header>
-  <ion-toolbar color="light">
-    <ion-title>
-      QR App
-    </ion-title>
+  <ion-toolbar>
+    <ion-title>Scan QR</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,26 +18,50 @@
   </ion-segment>
 
   <!-- ===== Scan QR ==== -->
-  <div *ngIf="segment === 'scan'">
-    if segment is equal to scan
-  </div>
+  <div class="segment" *ngIf="segment === 'scan'">
+    <div class="segment-content">
+      <img src="assets/img/scan-qr.webp" alt="Scan QR">
 
-  <!-- ===== Generate QR ==== -->
-<!-- ===== Generate QR ==== -->
-<div class="segment" *ngIf="segment === 'generate'">
-  <div class="segment-content">
-    if segment is equal to generate
-    <div id="qrImage">
-      <div class="d-flex-center">
-        <div class="d-flex-center qr-wrapper">
-        <qr-code [value]="qrText" size="190" errorCorrectionLevel="M"></qr-code>
-        </div>
-        
-      </div>
+      <h6 class="scan-label">Escanea un QR</h6>
+      
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="starscan()" expand="block" class="submit">
+            Scan QR
+            <ion-icon slot="end" name="qr-code-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" class="submit">
+            Selecciona
+            <ion-icon slot="end" name="image-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+        <!-- ===== Scan Resultado==== -->
+        <ion-item class="result"  *ngIf="scannedCode" lines="none">
+        <ion-label>
+          <P>Scan Resultado</P>
+          <div>{{scannedCode}}</div>
+        </ion-label>
+        <ion-input [value]="qrResultString" readonly="true"></ion-input>
+
       
     </div>
-
   </div>
-</div>
+ 
+  <!-- ===== Generate QR ==== -->
+  <div class="segment" *ngIf="segment === 'generate'">
+    <div class="segment-content">
+      <div id="qrImage">
+        <div class="d-flex-center">
+          <div class="d-flex-center qr-wrapper">
+            <qr-code [value]="qrText" size="190" errorCorrectionLevel="M"></qr-code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </ion-content>

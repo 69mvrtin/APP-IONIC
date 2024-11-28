@@ -8,6 +8,7 @@ import { ScanPageRoutingModule } from './scan-routing.module';
 
 import { ScanPage } from './scan.page';
 import {QrCodeModule} from 'ng-qrcode';
+import { BarcodeScanningModalComponent } from './barcode-scanning-modal.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import {QrCodeModule} from 'ng-qrcode';
     ScanPageRoutingModule,
     QrCodeModule
   ],
-  declarations: [ScanPage]
-})
+  declarations: [ScanPage, BarcodeScanningModalComponent]
+  })
 export class ScanPageModule {}
