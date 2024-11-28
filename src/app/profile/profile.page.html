@@ -32,7 +32,8 @@
         </div>
         <div class="profile-item">
           <span class="profile-item-label">Modalidad:</span>
-          <span>{{ userData.accountCreated | date:'shortDate' || 'Not available' }}</span>
+          <span *ngIf="userData.accountCreated; else noDate">{{ userData.accountCreated | date:'shortDate' }}</span>
+<ng-template #noDate>Not available</ng-template>
         </div>
         <div class="profile-item">
           <span class="profile-item-label">Sede:</span>

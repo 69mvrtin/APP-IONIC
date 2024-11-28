@@ -1,13 +1,79 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>profile-profesor</ion-title>
+    <ion-title>Perfil del Profesor</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile-profesor</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <!-- Foto de perfil -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Dr. Juan Pérez</ion-card-title>
+      <ion-card-subtitle color="light">Profesor de Matemáticas Avanzadas</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+       <p color="light">Con más de 15 años de experiencia en la enseñanza, el Dr. Juan Pérez destaca por su excelencia académica y compromiso con la educación
+       </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Segmento para cambiar entre secciones -->
+  <ion-segment [(ngModel)]="segmentValue" (ionChange)="onSegmentChange($event)">
+    <ion-segment-button value="info">
+      <ion-label>Información</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="cursos">
+      <ion-label>Cursos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="publicaciones">
+      <ion-label>Publicaciones</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Contenido de cada pestaña -->
+  <div *ngIf="segmentValue === 'info'">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Formación Académica</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ul>
+          <li>Doctorado en Matemáticas, Universidad Nacional</li>
+          <li>Maestría en Matemáticas Aplicadas, Universidad Estatal</li>
+          <li>Licenciatura en Matemáticas, Instituto Tecnológico</li>
+        </ul>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="segmentValue === 'cursos'">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Cursos Impartidos</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ul>
+          <li>Álgebra Avanzada</li>
+          <li>Análisis Numérico</li>
+          <li>Cálculo Integral y Diferencial</li>
+        </ul>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="segmentValue === 'publicaciones'">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Publicaciones Destacadas</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ul>
+          <li>"Métodos Numéricos para Soluciones Complejas"</li>
+          <li>"Teoría de Números en la Computación Moderna"</li>
+          <li>"Optimización en Álgebra Lineal"</li>
+        </ul>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
 </ion-content>

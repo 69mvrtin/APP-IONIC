@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-profesor.page.scss'],
 })
 export class ProfileProfesorPage implements OnInit {
+  // Propiedades para manejar las pestañas
+  segmentValue: string = 'info'; // Valor inicial del segmento
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  // Método para manejar el cambio de pestañas (opcional)
+  onSegmentChange(event: any) {
+    this.segmentValue = event.detail.value;
   }
-
 }
