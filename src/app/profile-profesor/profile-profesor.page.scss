@@ -1,0 +1,113 @@
+ion-content {
+    --background: #263e44; /* Fondo suave general */
+  }
+  
+  .profile-card {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #fcffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .profile-card ion-img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .profile-card-header {
+    background-color: #f9f9f9;
+    border-radius: 12px 12px 0 0;
+    padding: 10px;
+  }
+  
+  .profile-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+  
+  .profile-subtitle {
+    font-size: 1.2em;
+    color: #d3f9f9;
+  }
+  
+  .profile-description {
+    font-size: 1.1em;
+    padding: 10px;
+    background-color: #f3f8f8;
+    border-radius: 8px;
+    color: #ffffff;
+    margin: 20px;
+  }
+  
+  .segment-wrapper {
+    margin: 20px auto;
+    max-width: 400px;
+  }
+  
+  ion-segment {
+    --background: #457c7d;
+    --indicator-color: #ffffff;
+    --button-color: #d3f9f9;
+    --button-color-checked: #ffffff;
+  }
+  
+  .tab-content {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #b5b5b5;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+  }
+  
+  .tab-content ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .tab-content li {
+    padding: 5px 0;
+    border-bottom: 1px solid #d3f9f9;
+  }
+  
+  .tab-content li:last-child {
+    border-bottom: none;
+  }
+  
+  ion-card-title {
+    font-size: 1.5em;
+    color: #ffffff;
+  }
+  
+  ion-card-subtitle {
+    font-size: 1.1em;
+    color: #d3f9f9;
+  }
+  
+  ion-card-content p {
+    font-size: 1em;
+    color: #ffffff;
+  }
+  
+  ion-card-header {
+    background-color: #032f30;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  ion-card {
+    margin: 20px auto;
+    max-width: 400px;
+    background-color: #0d1111;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
