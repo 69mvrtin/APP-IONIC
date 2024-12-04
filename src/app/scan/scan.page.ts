@@ -3,6 +3,7 @@ import { ModalController, Platform } from '@ionic/angular';
 import { BarcodeScanningModalComponent } from './barcode-scanning-modal.component'; // Ajusta la ruta según sea necesario
 import { LensFacing, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import { Camera } from '@capacitor/camera'; // Importa la clase Camera
+import { QrScannerService } from '../services/qr-scanner.service'; // Ajusta la ruta según tu proyecto
 
 @Component({
   selector: 'app-scan',
@@ -16,7 +17,8 @@ export class ScanPage implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private platform: Platform // Inyectamos Platform
+    private platform: Platform,
+    private readonly qrScannerService: QrScannerService // Inyecta el servicio QrScannerService
   ) {}
 
   async ngOnInit() {
@@ -55,9 +57,19 @@ export class ScanPage implements OnInit {
     await modal.present();
 
     const { data } = await modal.onWillDismiss();
+    
+    if (data && data.barcode) {
+      this.scannedCode = data.barcode.displayValue;
+    }
+  }
 
-    if (data) {
-      this.scannedCode = data?.barcode?.displayValue;
+  async scanQRCode(): Promise<void> {
+    const results = await this.qrScannerService.scan();
+    if (results.length > 0) {
+      console.log('Códigos QR escaneados:', results);
+      // Aquí puedes agregar lógica adicional para manejar los resultados
+    } else {
+      console.warn('No se encontraron códigos QR.');
     }
   }
 }

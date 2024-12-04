@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Scan QR</ion-title>
+    <ion-title>Escaneo de QR</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -61,5 +61,12 @@
       </div>
     </div>
   </div>
+
+  <!-- Botón flotante para escanear QR -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="scanQRCode()">
+      <ion-icon name="qr-code-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
