@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { BarcodeScanner, BarcodeFormat, LensFacing } from '@capacitor-mlkit/barcode-scanning';
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 
 @Component({
   selector: 'app-scan',
@@ -10,8 +10,6 @@ import { BarcodeScanner, BarcodeFormat, LensFacing } from '@capacitor-mlkit/barc
 export class ScanPage implements OnInit {
   segment = 'scan';
   scannedCode = '';
-  private videoElement!: HTMLVideoElement;
-  private videoStream!: MediaStream;
 
   constructor(private platform: Platform) {}
 
@@ -21,11 +19,15 @@ export class ScanPage implements OnInit {
     }
   }
 
+  /**
+   * Verifica y solicita permisos de cámara.
+   */
   async checkCameraPermissions() {
     try {
-      const status = await BarcodeScanner.checkPermissions();
-      if (status.camera !== 'granted') {
-        await BarcodeScanner.requestPermissions();
+      const status = await BarcodeScanner.checkPermission();
+      if (status.granted !== true) {
+        // Solicitar permisos de cámara si no están concedidos
+        console.log('Permiso de cámara no concedido');
       }
     } catch (error) {
       console.error('Error checking camera permissions:', error);
@@ -33,57 +35,30 @@ export class ScanPage implements OnInit {
   }
 
   /**
-   * Inicia el escaneo en tiempo real con vista previa.
+   * Escanea un código QR usando la cámara trasera y muestra el resultado.
    */
   async scanQRCode() {
     console.log('Iniciando escaneo...');
-    this.videoElement = document.getElementById('previewVideo') as HTMLVideoElement;
-
     try {
-      // Obtén el stream de la cámara
-      this.videoStream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'environment' }, // Cámara trasera
+      // Inicia el escaneo y abre la cámara
+      const result = await BarcodeScanner.startScan({
+        // No es necesario usar 'continuousScan'
+        // El escáner escaneará un solo código QR por vez
       });
-      
-      // Asigna el stream al video para mostrar la cámara en la pantalla
-      this.videoElement.srcObject = this.videoStream;
-
-      // Inicia el escaneo
-      await BarcodeScanner.startScan({
-        formats: [BarcodeFormat.QrCode], // Solo QR
-        lensFacing: LensFacing.Back,      // Usar la cámara trasera
-      });
-
-      // Escucha el evento de escaneo (escaneo continuo)
-      BarcodeScanner.addListener('barcodeScanned', (event: any) => {
-        if (event.barcode) {
-          this.scannedCode = event.barcode.displayValue || 'Código QR no válido';
-          console.log('Código QR escaneado:', this.scannedCode);
-
-          // Detener escaneo si ya se escaneó un código
-          this.stopScan();
-        }
-      });
+  
+      // Verifica si se obtuvo un resultado
+      if (result?.hasContent) {
+        // Accede al contenido escaneado
+        this.scannedCode = result.content || 'Código QR no válido';
+        console.log('Código QR escaneado:', this.scannedCode);
+      }
+  
+      // Detiene el escaneo después de obtener el resultado
+      await BarcodeScanner.stopScan();
     } catch (error) {
-      console.error('Error al iniciar el escaneo:', error);
-      this.stopScan(); // Detener el escaneo en caso de error
+      console.error('Error al escanear el QR:', error);
+      await BarcodeScanner.stopScan(); // Asegura detener el escaneo en caso de error
     }
   }
-
-  /**
-   * Detener el escaneo y cerrar la cámara.
-   */
-  stopScan() {
-    if (this.videoStream) {
-      const tracks = this.videoStream.getTracks();
-      tracks.forEach((track) => track.stop());
-    }
-
-    if (this.videoElement) {
-      this.videoElement.srcObject = null;
-    }
-
-    // Detener el escaneo en MLKit
-    BarcodeScanner.stopScan();
-  }
+  
 }

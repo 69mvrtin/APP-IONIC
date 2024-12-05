@@ -5,9 +5,6 @@
 </ion-header>
 
 <ion-content class="ion-padding ion-text-center color-bg">
-  <!-- Video element to show camera feed -->
-  <video id="previewVideo" autoplay></video> <!-- Add video element -->
-
   <!-- ===== Segments ==== -->
   <ion-segment [(ngModel)]="segment" mode="ios">
     <ion-segment-button value="scan">
@@ -22,7 +19,6 @@
   <div class="segment" *ngIf="segment === 'scan'">
     <div class="segment-content">
       <img src="assets/img/scan-qr.webp" alt="Scan QR">
-
       <h6 class="scan-label">Escanea un QR</h6>
 
       <ion-row>
