@@ -1,34 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Escaneo de QR</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-segment [(ngModel)]="segment" mode="ios">
+  <ion-segment-button shape="round" style="--color: #000000; --background: #F4A100;" (click)="qrcode()">
+    <ion-label style="display: flex; align-items: center; justify-content: center;">
+      <img src="assets/img/camara.png" alt="icono" style="width: 30px; height: 30px;">
+      <span style="white-space: nowrap;">Registrar Asistencia</span>
+      <img src="assets/img/camara.png" alt="icono" style="width: 30px; height: 30px;">
+    </ion-label>
+  </ion-segment-button>
 
-<ion-content class="ion-padding ion-text-center color-bg">
-  <ion-segment [(ngModel)]="segment" mode="ios">
-    <ion-segment-button shape="round" style="--color: #000000; --background: #F4A100;" (click)="qrcode()">
-      <ion-label style="display: flex; align-items: center; justify-content: center;">
-        <img src="assets/img/camara.png" alt="icono" style="width: 30px; height: 30px;">
-        <span style="white-space: nowrap;">Registrar Asistencia</span>
-        <img src="assets/img/camara.png" alt="icono" style="width: 30px; height: 30px;">
-      </ion-label>
-    </ion-segment-button>
-  </ion-segment>
-
-  <!-- Mostrar resultado del escaneo -->
-  <div *ngIf="scannedCode">
-    <ion-item lines="none">
-      <ion-label>
-        <p>Resultado del escaneo:</p>
-        <div>{{ scannedCode }}</div>
-      </ion-label>
-    </ion-item>
-  </div>
-
-  <!-- Botón flotante para escanear QR -->
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="qrcode()">
-      <ion-icon name="qr-code-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-</ion-content>
+  <ion-segment-button value="generar" style="--color: #000000; --background: #F4A100;">
+    <ion-label style="display: flex; align-items: center; justify-content: center;">
+      <img src="assets/img/tuerca.png" alt="icono" style="width: 20px; height: 20px;">
+      <span style="white-space: nowrap;">Generar QR Asistencia</span>
+      <img src="assets/img/tuerca.png" alt="icono" style="width: 20px; height: 20px;">
+    </ion-label>
+  </ion-segment-button>
+</ion-segment>

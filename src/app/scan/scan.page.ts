@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';  // Importación correcta
-import { Plugins } from '@capacitor/core';
+import { CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint } from '@capacitor/barcode-scanner';
 
-const { Permissions } = Plugins;
+// Define la interfaz ScanResult para el tipo de datos del resultado del escaneo
+interface ScanResult {
+  text: string; // El contenido del código escaneado
+  // Puedes agregar más propiedades si es necesario, dependiendo del objeto que devuelva el escáner
+}
 
 @Component({
   selector: 'app-scan',
@@ -11,68 +14,46 @@ const { Permissions } = Plugins;
   styleUrls: ['./scan.page.scss'],
 })
 export class ScanPage implements OnInit {
-  segment = 'scan';
+  segment: string = 'generar';
+  qrText: string = '';
+  materiaSeleccionada: string = '';
+  username: string = '';
+  result: string = '';
+  scannedData: any;
+  weatherData: any;
+  horaActual: string = '';
+  asignatura: string = '';
+  seccion: string = '';
+  sala: string = '';
+  fecha: string = '';
+  locationErrorMessage: string = '';
   scannedCode: string = '';
-  locationErrorMessage: string = ''; // Si necesitas manejar un error de ubicación
 
   constructor(private platform: Platform) {}
 
   async ngOnInit() {
-    if (this.platform.is('capacitor')) {
-      await this.checkCameraPermissions();
-    }
+    // Tu lógica de inicialización si es necesario
   }
 
-  // Verificar permisos de la cámara
-  async checkCameraPermissions() {
-    try {
-      const { status } = await Permissions['query']({ name: 'camera' });
-      if (status !== 'granted') {
-        const { granted } = await Permissions['request']({ name: 'camera' });
-        if (granted) {
-          console.log('Permiso de cámara concedido');
-        } else {
-          console.error('Permiso de cámara denegado');
-        }
-      } else {
-        console.log('Permiso de cámara ya concedido');
-      }
-    } catch (error) {
-      console.error('Error al verificar los permisos:', error);
-    }
-  }
-
-  // Función para escanear el código QR
   async qrcode(): Promise<void> {
-    if (this.locationErrorMessage) {
-      alert(this.locationErrorMessage);  // Mostrar mensaje de error si la ubicación no es válida
-      return;
-    }
-
     try {
-      const result = await BarcodeScanner.startScan();  // Cambio: usar BarcodeScanner
-      if (result?.hasContent) {
-        this.scannedCode = result.content || 'Código QR no válido';
+      const result = await CapacitorBarcodeScanner.scanBarcode({
+        hint: CapacitorBarcodeScannerTypeHint.ALL
+      });
+
+      // Imprimir el resultado para ver las propiedades disponibles
+      console.log('Resultado del escaneo:', result);
+
+      // Si el resultado es válido y tiene la propiedad "text", asignarlo
+      if (result && 'text' in result) {
+        const scanResult = result as ScanResult;  // Hacemos un cast a ScanResult
+        this.scannedCode = scanResult.text; // Asigna el contenido del código QR
         console.log('Código QR escaneado:', this.scannedCode);
       } else {
-        console.log('No se escaneó ningún código');
+        console.error('No se encontró la propiedad "text" en el resultado');
       }
     } catch (error) {
       console.error('Error al escanear el código QR:', error);
-    }
-  }
-
-
-  // Método adicional si necesitas abrir la cámara directamente (opcional)
-  async openCamera() {
-    try {
-      const result = await BarcodeScanner.startScan();  // Cambio: usar BarcodeScanner
-      if (result?.hasContent) {
-        this.scannedCode = result.content || 'Código QR no válido';
-        console.log('Código QR escaneado:', this.scannedCode);
-      }
-    } catch (error) {
-      console.error('Error al abrir la cámara:', error);
     }
   }
 }
