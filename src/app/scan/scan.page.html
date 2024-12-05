@@ -5,7 +5,6 @@
 </ion-header>
 
 <ion-content class="ion-padding ion-text-center color-bg">
-  <!-- ===== Segments ==== -->
   <ion-segment [(ngModel)]="segment" mode="ios">
     <ion-segment-button value="scan">
       <ion-label>Scan QR</ion-label>
@@ -15,7 +14,7 @@
     </ion-segment-button>
   </ion-segment>
 
-  <!-- ===== Scan QR ==== -->
+  <!-- Segment para escanear QR -->
   <div class="segment" *ngIf="segment === 'scan'">
     <div class="segment-content">
       <img src="assets/img/scan-qr.webp" alt="Scan QR">
