@@ -37,6 +37,8 @@
     "@ionic/pwa-elements": "^3.3.0",
     "@ionic/storage": "^4.0.0",
     "@ionic/storage-angular": "^4.0.0",
+    "@zxing/browser": "^0.1.5",
+    "angularx-qrcode": "^19.0.0",
     "ionicons": "^7.0.0",
     "ng-qrcode": "^18.0.0",
     "rxjs": "~7.8.0",
