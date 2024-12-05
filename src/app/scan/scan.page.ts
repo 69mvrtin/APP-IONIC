@@ -72,4 +72,22 @@ export class ScanPage implements OnInit {
       await BarcodeScanner.stopScan(); // Detiene el escaneo en caso de error
     }
   }
+  async openCamera() {
+    try {
+      console.log('Abriendo la cámara...');
+      const result = await BarcodeScanner.startScan();
+      console.log('Escaneo iniciado:', result);
+    } catch (error) {
+      console.error('Error al abrir la cámara:', error);
+    }
+  }
+  
+  async closeCamera() {
+    try {
+      await BarcodeScanner.stopScan();
+      console.log('Escaneo detenido');
+    } catch (error) {
+      console.error('Error al detener el escaneo:', error);
+    }
+  } 
 }
