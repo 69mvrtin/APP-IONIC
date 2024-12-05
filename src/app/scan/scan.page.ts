@@ -25,11 +25,8 @@ export class ScanPage implements OnInit {
   async checkCameraPermissions() {
     try {
       const status = await BarcodeScanner.checkPermissions();
-      console.log('Permissions:', status);
-
       if (status.camera !== 'granted') {
-        const result = await BarcodeScanner.requestPermissions();
-        console.log('Permissions granted:', result);
+        await BarcodeScanner.requestPermissions();
       }
     } catch (error) {
       console.error('Error checking camera permissions:', error);
@@ -37,26 +34,35 @@ export class ScanPage implements OnInit {
   }
 
   /**
-   * Escanea un código QR usando la cámara trasera.
+   * Escanea un código QR usando la cámara trasera y escucha el evento de escaneo.
+   * Abre la cámara a pantalla completa.
    */
   async scanQRCode() {
     console.log('Iniciando escaneo...');
     try {
-      // Inicia el escaneo de QR
+      // Inicia el escaneo y abre la cámara a pantalla completa
       await BarcodeScanner.startScan({
         formats: [BarcodeFormat.QrCode], // Solo escanea códigos QR
-        lensFacing: LensFacing.Back,     // Usa la cámara trasera
+        lensFacing: LensFacing.Back,      // Usa la cámara trasera
       });
 
-      // Escuchar cuando se escanea un código
-      BarcodeScanner.addListener('barcodeScanned', (barcode: any) => {
-        console.log('Código QR escaneado:', barcode.displayValue);
-        this.scannedCode = barcode.displayValue || 'No se pudo leer el código';
-        BarcodeScanner.stopScan(); // Detiene el escaneo después de capturar un código
+      // Escucha el evento de escaneo
+      BarcodeScanner.addListener('barcodeScanned', (event) => {
+        if (event.barcode) {
+          this.scannedCode = event.barcode.displayValue || 'Código QR no válido';
+          console.log('Código QR escaneado:', this.scannedCode);
+
+          // Detiene el escaneo después de un resultado exitoso
+          BarcodeScanner.stopScan();
+
+          // Aquí puedes agregar lógica para cerrar la vista del escáner y regresar
+          // Si estás usando una navegación de Ionic, por ejemplo:
+          // this.router.navigate(['/home']); // Navega a la página principal
+        }
       });
     } catch (error) {
       console.error('Error al escanear el QR:', error);
-      BarcodeScanner.stopScan(); // Detener el escaneo en caso de error
+      await BarcodeScanner.stopScan(); // Asegura detener el escaneo en caso de error
     }
   }
 }
