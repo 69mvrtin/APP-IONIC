@@ -44,6 +44,8 @@ export class ScanPage implements OnInit {
       this.videoStream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: 'environment' }, // Cámara trasera
       });
+      
+      // Asigna el stream al video para mostrar la cámara en la pantalla
       this.videoElement.srcObject = this.videoStream;
 
       // Inicia el escaneo

@@ -5,6 +5,9 @@
 </ion-header>
 
 <ion-content class="ion-padding ion-text-center color-bg">
+  <!-- Video element to show camera feed -->
+  <video id="previewVideo" autoplay></video> <!-- Add video element -->
+
   <!-- ===== Segments ==== -->
   <ion-segment [(ngModel)]="segment" mode="ios">
     <ion-segment-button value="scan">
