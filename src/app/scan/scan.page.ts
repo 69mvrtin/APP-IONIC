@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';  // Importación correcta
 import { Plugins } from '@capacitor/core';
 
 const { Permissions } = Plugins;
@@ -12,7 +12,8 @@ const { Permissions } = Plugins;
 })
 export class ScanPage implements OnInit {
   segment = 'scan';
-  scannedCode = '';
+  scannedCode: string = '';
+  locationErrorMessage: string = ''; // Si necesitas manejar un error de ubicación
 
   constructor(private platform: Platform) {}
 
@@ -22,17 +23,11 @@ export class ScanPage implements OnInit {
     }
   }
 
-  /**
-   * Verifica y solicita permisos de cámara.
-   */
+  // Verificar permisos de la cámara
   async checkCameraPermissions() {
     try {
-      // Accede correctamente al método 'query' usando notación de corchetes
       const { status } = await Permissions['query']({ name: 'camera' });
-
       if (status !== 'granted') {
-        console.log('Permiso de cámara no concedido');
-        // Accede correctamente al método 'request' usando notación de corchetes
         const { granted } = await Permissions['request']({ name: 'camera' });
         if (granted) {
           console.log('Permiso de cámara concedido');
@@ -47,48 +42,37 @@ export class ScanPage implements OnInit {
     }
   }
 
-  /**
-   * Inicia el escaneo y abre la cámara para escanear códigos QR.
-   */
-  async scanQRCode() {
-    console.log('Iniciando escaneo...');
-    try {
-      // Inicia el escaneo y abre la cámara
-      const result = await BarcodeScanner.startScan();
+  // Función para escanear el código QR
+  async qrcode(): Promise<void> {
+    if (this.locationErrorMessage) {
+      alert(this.locationErrorMessage);  // Mostrar mensaje de error si la ubicación no es válida
+      return;
+    }
 
-      // Verifica si se obtuvo un resultado
+    try {
+      const result = await BarcodeScanner.startScan();  // Cambio: usar BarcodeScanner
       if (result?.hasContent) {
-        // Accede al contenido escaneado
         this.scannedCode = result.content || 'Código QR no válido';
         console.log('Código QR escaneado:', this.scannedCode);
       } else {
         console.log('No se escaneó ningún código');
       }
-
-      // Detiene el escaneo después de obtener el resultado
-      await BarcodeScanner.stopScan();
     } catch (error) {
-      console.error('Error al escanear el QR:', error);
-      await BarcodeScanner.stopScan(); // Detiene el escaneo en caso de error
+      console.error('Error al escanear el código QR:', error);
     }
   }
 
+
+  // Método adicional si necesitas abrir la cámara directamente (opcional)
   async openCamera() {
     try {
-      console.log('Abriendo la cámara...');
-      const result = await BarcodeScanner.startScan();
-      console.log('Escaneo iniciado:', result);
+      const result = await BarcodeScanner.startScan();  // Cambio: usar BarcodeScanner
+      if (result?.hasContent) {
+        this.scannedCode = result.content || 'Código QR no válido';
+        console.log('Código QR escaneado:', this.scannedCode);
+      }
     } catch (error) {
       console.error('Error al abrir la cámara:', error);
-    }
-  }
-
-  async closeCamera() {
-    try {
-      await BarcodeScanner.stopScan();
-      console.log('Escaneo detenido');
-    } catch (error) {
-      console.error('Error al detener el escaneo:', error);
     }
   }
 }

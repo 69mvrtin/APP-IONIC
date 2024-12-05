@@ -6,48 +6,28 @@
 
 <ion-content class="ion-padding ion-text-center color-bg">
   <ion-segment [(ngModel)]="segment" mode="ios">
-    <ion-segment-button value="scan">
-      <ion-label>Scan QR</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="generate">
-      <ion-label>Generate QR</ion-label>
+    <ion-segment-button shape="round" style="--color: #000000; --background: #F4A100;" (click)="qrcode()">
+      <ion-label style="display: flex; align-items: center; justify-content: center;">
+        <img src="assets/img/camara.png" alt="icono" style="width: 30px; height: 30px;">
+        <span style="white-space: nowrap;">Registrar Asistencia</span>
+        <img src="assets/img/camara.png" alt="icono" style="width: 30px; height: 30px;">
+      </ion-label>
     </ion-segment-button>
   </ion-segment>
 
-  <!-- Segment para escanear QR -->
-  <div class="segment" *ngIf="segment === 'scan'">
-    <div class="segment-content">
-      <img src="assets/img/scan-qr.webp" alt="Scan QR">
-      <h6 class="scan-label">Escanea un QR</h6>
-
-      <ion-row>
-        <ion-col size="6">
-          <ion-button (click)="openCamera()" expand="block" class="submit">
-            Scan QR
-            <ion-icon slot="end" name="qr-code-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col size="6">
-          <ion-button expand="block" class="submit">
-            Selecciona
-            <ion-icon slot="end" name="image-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-
-      <!-- Mostrar resultado del QR escaneado -->
-      <ion-item class="result" *ngIf="scannedCode" lines="none">
-        <ion-label>
-          <p>Resultado del escaneo:</p>
-          <div>{{ scannedCode }}</div>
-        </ion-label>
-      </ion-item>
-    </div>
+  <!-- Mostrar resultado del escaneo -->
+  <div *ngIf="scannedCode">
+    <ion-item lines="none">
+      <ion-label>
+        <p>Resultado del escaneo:</p>
+        <div>{{ scannedCode }}</div>
+      </ion-label>
+    </ion-item>
   </div>
 
   <!-- Botón flotante para escanear QR -->
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="scanQRCode()">
+    <ion-fab-button (click)="qrcode()">
       <ion-icon name="qr-code-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
