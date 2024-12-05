@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, Platform } from '@ionic/angular';
-import { BarcodeScanningModalComponent } from './barcode-scanning-modal.component'; // Ajusta la ruta según sea necesario
-import { LensFacing, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
-import { Camera } from '@capacitor/camera'; // Importa la clase Camera
-import { QrScannerService } from '../services/qr-scanner.service'; // Ajusta la ruta según tu proyecto
+import { Platform } from '@ionic/angular';
+import { BarcodeScanner, BarcodeFormat, LensFacing } from '@capacitor-mlkit/barcode-scanning';
 
 @Component({
   selector: 'app-scan',
@@ -12,64 +9,54 @@ import { QrScannerService } from '../services/qr-scanner.service'; // Ajusta la 
 })
 export class ScanPage implements OnInit {
   segment = 'scan';
-  qrText = 'Confirma Tu Asistencia';
   scannedCode = '';
 
-  constructor(
-    private modalController: ModalController,
-    private platform: Platform,
-    private readonly qrScannerService: QrScannerService // Inyecta el servicio QrScannerService
-  ) {}
+  constructor(private platform: Platform) {}
 
   async ngOnInit() {
-    // Verifica si la plataforma es Capacitor y solicita permisos de cámara
     if (this.platform.is('capacitor')) {
-      try {
-        const status = await Camera.requestPermissions();
-        console.log('Camera permission status:', status);
-      } catch (error) {
-        console.error('Error requesting camera permission:', error);
+      await this.checkCameraPermissions();
+    }
+  }
+
+  /**
+   * Verifica y solicita permisos de cámara.
+   */
+  async checkCameraPermissions() {
+    try {
+      const status = await BarcodeScanner.checkPermissions();
+      console.log('Permissions:', status);
+
+      if (status.camera !== 'granted') {
+        const result = await BarcodeScanner.requestPermissions();
+        console.log('Permissions granted:', result);
       }
-
-      BarcodeScanner.isSupported().then((supported) => {
-        console.log('Scanner supported:', supported);
-      });
-
-      BarcodeScanner.checkPermissions().then((permissions) => {
-        console.log('Permissions:', permissions);
-      });
-      BarcodeScanner.removeAllListeners();
+    } catch (error) {
+      console.error('Error checking camera permissions:', error);
     }
   }
 
-  async starscan() {
+  /**
+   * Escanea un código QR usando la cámara trasera.
+   */
+  async scanQRCode() {
     console.log('Iniciando escaneo...');
-    const modal = await this.modalController.create({
-      component: BarcodeScanningModalComponent,
-      cssClass: 'barcode-scanning-modal',
-      showBackdrop: false,
-      componentProps: {
-        formats: [],
-        LensFacing: LensFacing.Back,
-      },
-    });
+    try {
+      // Inicia el escaneo de QR
+      await BarcodeScanner.startScan({
+        formats: [BarcodeFormat.QrCode], // Solo escanea códigos QR
+        lensFacing: LensFacing.Back,     // Usa la cámara trasera
+      });
 
-    await modal.present();
-
-    const { data } = await modal.onWillDismiss();
-    
-    if (data && data.barcode) {
-      this.scannedCode = data.barcode.displayValue;
-    }
-  }
-
-  async scanQRCode(): Promise<void> {
-    const results = await this.qrScannerService.scan();
-    if (results.length > 0) {
-      console.log('Códigos QR escaneados:', results);
-      // Aquí puedes agregar lógica adicional para manejar los resultados
-    } else {
-      console.warn('No se encontraron códigos QR.');
+      // Escuchar cuando se escanea un código
+      BarcodeScanner.addListener('barcodeScanned', (barcode: any) => {
+        console.log('Código QR escaneado:', barcode.displayValue);
+        this.scannedCode = barcode.displayValue || 'No se pudo leer el código';
+        BarcodeScanner.stopScan(); // Detiene el escaneo después de capturar un código
+      });
+    } catch (error) {
+      console.error('Error al escanear el QR:', error);
+      BarcodeScanner.stopScan(); // Detener el escaneo en caso de error
     }
   }
 }
