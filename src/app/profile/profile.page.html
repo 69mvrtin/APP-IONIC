@@ -6,9 +6,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="logo-container">
-    <img src="assets/img/Logo_Duoc.png" alt="Logo Duoc UC" class="logo">
-  </div>
   <div *ngIf="userData.username; else noData" class="profile-container">
     <div class="profile-box">
       <!-- Foto de perfil -->
@@ -28,15 +25,11 @@
         </div>
         <div class="profile-item">
           <span class="profile-item-label">Carrera:</span>
-          <span>{{ userData.email || 'Email not available' }}</span>
-        </div>
-        <div class="profile-item">
-          <span class="profile-item-label">Modalidad:</span>
-          <span *ngIf="userData.accountCreated; else noDate">{{ userData.accountCreated | date:'shortDate' }}</span>
-<ng-template #noDate>Not available</ng-template>
+          <span>{{ userData.career || 'Email not available' }}</span>
         </div>
         <div class="profile-item">
           <span class="profile-item-label">Sede:</span>
+          
           <span>{{ userData.location || 'Not provided' }}</span>
         </div>
       </div>
